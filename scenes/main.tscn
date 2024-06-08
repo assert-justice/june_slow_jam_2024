@@ -1,0 +1,268 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv38fbjr8wchp"]
+
+[ext_resource type="Script" path="res://scripts/menus/main.cs" id="1_fpx8u"]
+[ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpx8u")
+GameScene = ExtResource("2_4xmn0")
+
+[node name="MenuHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="MenuHolder"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuHolder/Main/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="MenuHolder/Main/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="MenuHolder/Main/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="MenuHolder/Main/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Options" type="Control" parent="MenuHolder"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuHolder/Options/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="MenuHolder/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="FullscreenToggle" type="CheckButton" parent="MenuHolder/Options/VBoxContainer/Panel"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="MainVolume" type="PanelContainer" parent="MenuHolder/Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Options/VBoxContainer/MainVolume"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuHolder/Options/VBoxContainer/MainVolume/VBoxContainer"]
+layout_mode = 2
+text = "Main Volume"
+horizontal_alignment = 1
+
+[node name="MainVolumeSlider" type="HSlider" parent="MenuHolder/Options/VBoxContainer/MainVolume/VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="MusicVolume" type="PanelContainer" parent="MenuHolder/Options/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Options/VBoxContainer/MusicVolume"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuHolder/Options/VBoxContainer/MusicVolume/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MenuHolder/Options/VBoxContainer/MusicVolume/VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="SfxVolume" type="PanelContainer" parent="MenuHolder/Options/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Options/VBoxContainer/SfxVolume"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuHolder/Options/VBoxContainer/SfxVolume/VBoxContainer"]
+layout_mode = 2
+text = "Sfx Volume"
+horizontal_alignment = 1
+
+[node name="SfxVolumeSlider" type="HSlider" parent="MenuHolder/Options/VBoxContainer/SfxVolume/VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="VoiceVolume" type="PanelContainer" parent="MenuHolder/Options/VBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Options/VBoxContainer/VoiceVolume"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MenuHolder/Options/VBoxContainer/VoiceVolume/VBoxContainer"]
+layout_mode = 2
+text = "Voice Volume"
+horizontal_alignment = 1
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="MenuHolder/Options/VBoxContainer/VoiceVolume/VBoxContainer"]
+layout_mode = 2
+step = 5.0
+value = 100.0
+
+[node name="Back" type="Button" parent="MenuHolder/Options/VBoxContainer"]
+layout_mode = 2
+text = "Back
+"
+
+[node name="Pause" type="Control" parent="MenuHolder"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuHolder/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="MenuHolder/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="MenuHolder/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Options" type="Button" parent="MenuHolder/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="MenuHolder/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Win" type="Control" parent="MenuHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuHolder/Win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuHolder/Win/VBoxContainer"]
+layout_mode = 2
+text = "You Win!"
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Button" parent="MenuHolder/Win/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Exit" type="Button" parent="MenuHolder/Win/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="GameHolder" type="CanvasLayer" parent="."]
+process_mode = 4
+
+[connection signal="button_down" from="MenuHolder/Main/VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="button_down" from="MenuHolder/Main/VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="MenuHolder/Main/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="toggled" from="MenuHolder/Options/VBoxContainer/Panel/FullscreenToggle" to="." method="_on_fullscreen_toggle_toggled"]
+[connection signal="value_changed" from="MenuHolder/Options/VBoxContainer/MainVolume/VBoxContainer/MainVolumeSlider" to="." method="_on_main_volume_slider_value_changed"]
+[connection signal="value_changed" from="MenuHolder/Options/VBoxContainer/MusicVolume/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="MenuHolder/Options/VBoxContainer/SfxVolume/VBoxContainer/SfxVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="MenuHolder/Options/VBoxContainer/VoiceVolume/VBoxContainer/VoiceVolumeSlider" to="." method="_on_voice_volume_slider_value_changed"]
+[connection signal="button_down" from="MenuHolder/Options/VBoxContainer/Back" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="MenuHolder/Pause/VBoxContainer/Resume" to="." method="_on_resume_button_down"]
+[connection signal="button_down" from="MenuHolder/Pause/VBoxContainer/MainMenu" to="." method="_on_main_menu_button_down"]
+[connection signal="button_down" from="MenuHolder/Pause/VBoxContainer/Options" to="." method="_on_options_button_down"]
+[connection signal="button_down" from="MenuHolder/Pause/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="MenuHolder/Win/VBoxContainer/MainMenu" to="." method="_on_main_menu_button_down"]
+[connection signal="button_down" from="MenuHolder/Win/VBoxContainer/Exit" to="." method="_on_exit_button_down"]
