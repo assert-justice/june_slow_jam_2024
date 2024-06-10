@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class main : Control
+public partial class Main : Control
 {
 	[Export]
 	PackedScene GameScene;
@@ -18,9 +18,12 @@ public partial class main : Control
 		SetMenu("Main");
 	}
 	public override void _Process(double delta){
-		if(Input.IsActionJustPressed("ui_cancel")){
-			if(!IsPaused()) SetPaused(true);
-			else if(menuStack.Peek() == "Pause") SetPaused(false);
+		if(Input.IsActionJustPressed("pause") && !IsPaused()){
+			SetPaused(true);
+		}
+		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused()){
+			// if(!IsPaused()) SetPaused(true);
+			if(menuStack.Peek() == "Pause") SetPaused(false);
 			else if(menuStack.Count > 1) PopMenu();
 		}
 	}
