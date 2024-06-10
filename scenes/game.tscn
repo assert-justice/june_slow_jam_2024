@@ -13,3 +13,6 @@ layer_0/tile_data = PackedInt32Array(917504, 0, 0, 851968, 0, 0, 786432, 0, 0, 7
 [node name="Player" parent="." instance=ExtResource("2_57lh4")]
 position = Vector2(243, 118)
 InputDevice = "0"
+
+[node name="Player2" parent="." instance=ExtResource("2_57lh4")]
+position = Vector2(441, 233)
