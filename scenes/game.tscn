@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://coj4njl6yawks"]
+[gd_scene load_steps=3 format=3 uid="uid://coj4njl6yawks"]
 
-[ext_resource type="PackedScene" uid="uid://cmg2tha1ppbae" path="res://scenes/level_test.tscn" id="1_hxm2v"]
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_yfvsu"]
+[ext_resource type="PackedScene" uid="uid://cmg2tha1ppbae" path="res://scenes/levels/level_test.tscn" id="2_i3g6l"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Game" parent="." instance=ExtResource("1_hxm2v")]
+script = ExtResource("1_yfvsu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, 240)
+
+[node name="LevelHolder" type="Node2D" parent="."]
+
+[node name="Level" parent="LevelHolder" instance=ExtResource("2_i3g6l")]
