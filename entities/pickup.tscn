@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba8mr6b64e07e"]
+
+[ext_resource type="Script" path="res://scripts/Pickup.cs" id="1_vsgat"]
+[ext_resource type="Texture2D" uid="uid://qdcmn0my4h0o" path="res://sprites/star.png" id="2_0kdib"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04b76"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2qoq"]
+radius = 11.0
+
+[node name="Pickup" type="RigidBody2D"]
+script = ExtResource("1_vsgat")
+
+[node name="Star" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0kdib")
+
+[node name="Hull" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_04b76")
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_e2qoq")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

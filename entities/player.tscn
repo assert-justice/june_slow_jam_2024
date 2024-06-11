@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://f05efwoa1co4"]
+[gd_scene load_steps=12 format=3 uid="uid://f05efwoa1co4"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_7ptrc"]
 [ext_resource type="Texture2D" uid="uid://des7dyk7ppe64" path="res://sprites/spritesheet_players.png" id="1_u2pbe"]
@@ -7,6 +7,18 @@
 atlas = ExtResource("1_u2pbe")
 region = Rect2(768, 768, 128, 256)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2y58"]
+atlas = ExtResource("1_u2pbe")
+region = Rect2(640, 0, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eecpd"]
+atlas = ExtResource("1_u2pbe")
+region = Rect2(384, 1280, 128, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j41gn"]
+atlas = ExtResource("1_u2pbe")
+region = Rect2(256, 512, 128, 256)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0nxpb"]
 animations = [{
 "frames": [{
@@ -14,7 +26,31 @@ animations = [{
 "texture": SubResource("AtlasTexture_nnxjo")
 }],
 "loop": true,
-"name": &"default",
+"name": &"blue_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2y58")
+}],
+"loop": true,
+"name": &"green_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eecpd")
+}],
+"loop": true,
+"name": &"red_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j41gn")
+}],
+"loop": true,
+"name": &"yellow_default",
 "speed": 5.0
 }]
 
@@ -25,7 +61,7 @@ size = Vector2(28, 38)
 size = Vector2(28, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87mdj"]
-size = Vector2(20, 6)
+size = Vector2(20, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a54f"]
 size = Vector2(33, 42)
@@ -33,7 +69,7 @@ size = Vector2(33, 42)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7ptrc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_0nxpb")
 
@@ -50,7 +86,7 @@ shape = SubResource("RectangleShape2D_dv4mw")
 [node name="Feet" type="Area2D" parent="." groups=["Feet"]]
 
 [node name="FeetCollider" type="CollisionShape2D" parent="Feet"]
-position = Vector2(0, 31)
+position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_87mdj")
 
 [node name="DashBox" type="Area2D" parent="." groups=["Dash"]]
