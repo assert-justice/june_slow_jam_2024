@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(28, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv4mw"]
-size = Vector2(20, 2)
+size = Vector2(28, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87mdj"]
 size = Vector2(20, 6)
@@ -41,7 +41,7 @@ sprite_frames = SubResource("SpriteFrames_0nxpb")
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_pksxx")
 
-[node name="Head" type="Area2D" parent="."]
+[node name="Head" type="Area2D" parent="." groups=["Head"]]
 
 [node name="HeadCollider" type="CollisionShape2D" parent="Head"]
 position = Vector2(0, -6)
@@ -60,5 +60,5 @@ position = Vector2(-0.5, 13)
 shape = SubResource("RectangleShape2D_2a54f")
 disabled = true
 
-[connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
+[connection signal="area_entered" from="Feet" to="." method="_on_feet_area_entered"]
 [connection signal="body_entered" from="DashBox" to="." method="_on_dash_box_body_entered"]

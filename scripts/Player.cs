@@ -21,6 +21,8 @@ public partial class Player : CharacterBody2D
 	[Export] public float WallJumpDuration = 0.5f;
 	[Export] public float DashSpeed = 1200.0f;
 	[Export] public float DashDuration = 0.2f;
+	[Export] public float BounceSpeed = 500.0f;
+	[Export] public float BounceTime = 0.3f;
 	[ExportGroup("Pickups")]
 	[Export] public int BonusJumps = 0;
 	[Export] public int Dashes = 0;
@@ -134,17 +136,32 @@ public partial class Player : CharacterBody2D
 		// hitBox.Disabled = true;
 		QueueFree();
 	}
-	private void _on_head_area_entered(Area2D area)
-	{
-		if(area.IsInGroup("Feet")){
-			Die();
-		}
+	// private void _on_head_area_entered(Area2D area)
+	// {
+	// 	if(area.IsInGroup("Feet")){
+	// 		Die();
+	// 	}
+	// }
+	void Bounce(Vector2 position){
+		var dir = (Position - position).Normalized();
+		Velocity = dir * BounceSpeed;
+		wallJumpClock = BounceTime;
 	}
 	private void _on_dash_box_body_entered(Node2D body)
 	{
 		if(body is Player player){
 			if(player == this) return;
 			player.Die();
+			Bounce(player.Position);
+		}
+	}
+	private void _on_feet_area_entered(Area2D area)
+	{
+		if(area.IsInGroup("Head")){
+			if(area.GetParent() is Player player){
+				player.Die();
+				Bounce(player.Position);
+			}
 		}
 	}
 }
