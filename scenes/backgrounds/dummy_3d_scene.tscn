@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4kydlv7m2vn8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l5oo5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1umpt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gyp74"]
+size = Vector3(5.99927, 1, 4.43408)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jmb5q"]
+size = Vector3(10, 0.2, 5)
+
+[node name="3D Scene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.830858, -0.454969, -0.320434, 1.53077e-16, 0.575819, -0.817577, 0.556484, 0.679291, 0.478424, 0, 1.2864, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_l5oo5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_1umpt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.55203, -4.56606)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35461, 0, -1.71704)
+shape = SubResource("BoxShape3D_gyp74")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74855, 0, -2.18406)
+mesh = SubResource("BoxMesh_jmb5q")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, -0.228526, -3.34459)
+spot_range = 4.75

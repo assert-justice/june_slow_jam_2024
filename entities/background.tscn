@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2p8pusadm75o"]
+
+[ext_resource type="Script" path="res://scripts/Background.cs" id="1_5m5h6"]
+[ext_resource type="PackedScene" uid="uid://b4kydlv7m2vn8" path="res://scenes/backgrounds/dummy_3d_scene.tscn" id="2_58hja"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_5m5h6")
+Scene3D = ExtResource("2_58hja")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 718.0
+offset_bottom = 482.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(718, 482)
+render_target_update_mode = 4

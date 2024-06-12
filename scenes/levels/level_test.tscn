@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmg2tha1ppbae"]
+[gd_scene load_steps=5 format=3 uid="uid://cmg2tha1ppbae"]
 
+[ext_resource type="PackedScene" uid="uid://d2p8pusadm75o" path="res://entities/background.tscn" id="1_ecd0q"]
 [ext_resource type="TileSet" uid="uid://d0fikwqbk03gq" path="res://tile_set.tres" id="1_fvym3"]
 [ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="2_x0y4o"]
 [ext_resource type="PackedScene" uid="uid://ba8mr6b64e07e" path="res://entities/pickup.tscn" id="3_oyac1"]
 
 [node name="Level" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_ecd0q")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_fvym3")
