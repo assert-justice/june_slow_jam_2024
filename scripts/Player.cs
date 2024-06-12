@@ -94,6 +94,12 @@ public partial class Player : CharacterBody2D
 		bool shouldJump = jumpJustPressed || jumpBufferClock > 0.0f;
 		Vector2 move = Input.GetVector(InputDevice + "_left", InputDevice + "_right", InputDevice + "_up", InputDevice + "_down");
 		float hMove = move.X;
+		if(hMove < 0.0f){
+			sprite.FlipH = true;
+		}
+		if(hMove > 0.0f){
+			sprite.FlipH = false;
+		}
 
 		// Handle movement
 		
@@ -115,6 +121,7 @@ public partial class Player : CharacterBody2D
 			velocity = move.Normalized() * DashSpeed;
 			dashClock = DashDuration;
 			Dashes--;
+			if(Dashes == 0) SetAnimation("default");
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){
@@ -168,6 +175,7 @@ public partial class Player : CharacterBody2D
 	public bool AddDash(){
 		// If already at max dashes, return false to indicate the powerup should not be consumed?
 		Dashes++;
+		SetAnimation("winged");
 		return true;
 	}
 	// Signal methods

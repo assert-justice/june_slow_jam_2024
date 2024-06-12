@@ -1,29 +1,48 @@
-[gd_scene load_steps=12 format=3 uid="uid://f05efwoa1co4"]
+[gd_scene load_steps=19 format=3 uid="uid://f05efwoa1co4"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_7ptrc"]
-[ext_resource type="Texture2D" uid="uid://des7dyk7ppe64" path="res://sprites/spritesheet_players.png" id="1_u2pbe"]
+[ext_resource type="Texture2D" uid="uid://ef4pm5mql20b" path="res://sprites/Cyan_Mothman_Design-Sheet.png" id="2_istm0"]
+[ext_resource type="Texture2D" uid="uid://w1j44uo18nb0" path="res://sprites/Green_Mothman_Design-Sheet.png" id="3_p5rf5"]
+[ext_resource type="Texture2D" uid="uid://iu50jcgfvhck" path="res://sprites/Magenta_Mothman_Design-Sheet.png" id="4_5ya6o"]
+[ext_resource type="Texture2D" uid="uid://ce8gm3aeenfll" path="res://sprites/Yellow_Mothman_Design-Sheet.png" id="5_eceo3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nnxjo"]
-atlas = ExtResource("1_u2pbe")
-region = Rect2(768, 768, 128, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdwnq"]
+atlas = ExtResource("2_istm0")
+region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2y58"]
-atlas = ExtResource("1_u2pbe")
-region = Rect2(640, 0, 128, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ihry"]
+atlas = ExtResource("2_istm0")
+region = Rect2(32, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eecpd"]
-atlas = ExtResource("1_u2pbe")
-region = Rect2(384, 1280, 128, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dq4p"]
+atlas = ExtResource("3_p5rf5")
+region = Rect2(0, 0, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j41gn"]
-atlas = ExtResource("1_u2pbe")
-region = Rect2(256, 512, 128, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ambkp"]
+atlas = ExtResource("3_p5rf5")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxk5o"]
+atlas = ExtResource("4_5ya6o")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ujqu"]
+atlas = ExtResource("4_5ya6o")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4qpw"]
+atlas = ExtResource("5_eceo3")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2756"]
+atlas = ExtResource("5_eceo3")
+region = Rect2(32, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0nxpb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nnxjo")
+"texture": SubResource("AtlasTexture_wdwnq")
 }],
 "loop": true,
 "name": &"blue_default",
@@ -31,7 +50,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e2y58")
+"texture": SubResource("AtlasTexture_7ihry")
+}],
+"loop": true,
+"name": &"blue_winged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dq4p")
 }],
 "loop": true,
 "name": &"green_default",
@@ -39,7 +66,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eecpd")
+"texture": SubResource("AtlasTexture_ambkp")
+}],
+"loop": true,
+"name": &"green_winged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxk5o")
 }],
 "loop": true,
 "name": &"red_default",
@@ -47,40 +82,56 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j41gn")
+"texture": SubResource("AtlasTexture_4ujqu")
+}],
+"loop": true,
+"name": &"red_winged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4qpw")
 }],
 "loop": true,
 "name": &"yellow_default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2756")
+}],
+"loop": true,
+"name": &"yellow_winged",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pksxx"]
-size = Vector2(28, 38)
+size = Vector2(14, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv4mw"]
-size = Vector2(28, 2)
+size = Vector2(12, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87mdj"]
-size = Vector2(20, 4)
+size = Vector2(10, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a54f"]
-size = Vector2(33, 42)
+size = Vector2(22, 42)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7ptrc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_0nxpb")
+animation = &"yellow_winged"
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
+position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_pksxx")
 
 [node name="Head" type="Area2D" parent="." groups=["Head"]]
 
 [node name="HeadCollider" type="CollisionShape2D" parent="Head"]
-position = Vector2(0, -6)
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_dv4mw")
 
 [node name="Feet" type="Area2D" parent="." groups=["Feet"]]
@@ -92,7 +143,7 @@ shape = SubResource("RectangleShape2D_87mdj")
 [node name="DashBox" type="Area2D" parent="." groups=["Dash"]]
 
 [node name="DashCollider" type="CollisionShape2D" parent="DashBox"]
-position = Vector2(-0.5, 13)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_2a54f")
 disabled = true
 
