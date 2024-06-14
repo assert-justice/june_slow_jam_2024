@@ -7,7 +7,7 @@ using System.Linq;
 public partial class Game : Node2D
 {
 	[Export] public PackedScene[] Levels;
-	int currentLevel = 0;
+	// int currentLevel = 0;
 	[Export] public PackedScene PlayerScene;
 	public struct Message{
 		public Player.Team SenderTeam;
@@ -18,6 +18,7 @@ public partial class Game : Node2D
 		}
 	}
 	Queue<Message> messages;
+	Queue<PackedScene> levelQueue;
 	Camera2D camera;
 	Node2D levelHolder;
 	List<Player> players;
@@ -30,11 +31,13 @@ public partial class Game : Node2D
 			new PlayerSummary("kb", Player.Team.Red),
 			new PlayerSummary("0", Player.Team.Green),
 		};
-		summaries = new(temp);
+		summaries = new();
 		players = new();
 		messages = new();
+		levelQueue = new();
 		// SetLevel(Levels[0]);
-		AdvanceLevel();
+		// AdvanceLevel();
+		SetTournament(temp, 4);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,33 +62,64 @@ public partial class Game : Node2D
 			var summary = summaries.Find(s => s.PlayerTeam == players[0].PlayerTeam);
 			summary.MatchWins++;
 			// Proceed to next match
-			AdvanceLevel();
-		}
-	}
-
-	// public void SetTournament(){}
-	void AdvanceLevel(){
-		if(currentLevel == Levels.Count()){
-			// Show results screen
-			foreach (var summary in summaries)
-			{
-				GD.Print(summary.ToString());
+			// AdvanceLevel();
+			if(levelQueue.Count > 0) AdvanceLevel();
+			else{
+				// Show results screen
+				foreach (var s in summaries)
+				{
+					GD.Print(s.ToString());
+				}
+				ClearLevel();
 			}
-			currentLevel++;
-			return;
 		}
-		else if(currentLevel > Levels.Count()) return;
-		SetLevel(Levels[currentLevel]);
-		currentLevel++;
 	}
 
-	void SetLevel(PackedScene levelScene){
+	public void SetTournament(PlayerSummary[] summaries, int numLevels){
+		this.summaries = new(summaries);
+		levelQueue.Clear();
+		var scenes = new List<PackedScene>();
+		for (int idx = 0; idx < numLevels; idx++)
+		{
+			if(scenes.Count == 0){
+				foreach (var level in Levels)
+				{
+					scenes.Add(level);
+				}
+			}
+			int index = Mathf.FloorToInt(GD.Randf() * scenes.Count);
+			levelQueue.Enqueue(scenes[index]);
+			scenes.RemoveAt(index);
+		}
+		AdvanceLevel();
+	}
+	void AdvanceLevel(){
+		// if(currentLevel == Levels.Count()){
+		// 	// Show results screen
+		// 	foreach (var summary in summaries)
+		// 	{
+		// 		GD.Print(summary.ToString());
+		// 	}
+		// 	currentLevel++;
+		// 	return;
+		// }
+		// else if(currentLevel > Levels.Count()) return;
+		if(levelQueue.Count == 0) return;
+		SetLevel(levelQueue.Dequeue());
+		// currentLevel++;
+	}
+
+	void ClearLevel(){
 		foreach (var child in levelHolder.GetChildren())
 		{
 			levelHolder.RemoveChild(child);
 			child.QueueFree();
 		}
 		players.Clear();
+	}
+
+	void SetLevel(PackedScene levelScene){
+		ClearLevel();
 		var level = levelScene.Instantiate();
 		levelHolder.AddChild(level);
 		var spawners = GetTree().GetNodesInGroup("Spawner");

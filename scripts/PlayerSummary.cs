@@ -10,6 +10,6 @@ public class PlayerSummary{
         InputDevice = inputDevice; PlayerTeam = playerTeam;
     }
     public override string ToString(){
-        return $"{InputDevice} Kills: {Kills}, Deaths: {Deaths}, Wins: {MatchWins}";
+        return $"Name: {InputDevice} Kills: {Kills}, Deaths: {Deaths}, Wins: {MatchWins}";
     }
 }
