@@ -153,15 +153,23 @@ public partial class Player : CharacterBody2D
 	}
 
 	// Utility methods
-	void Bounce(Vector2 position){
-		var dir = (Position - position).Normalized();
-		Velocity = dir * BounceSpeed;
-		wallJumpClock = BounceTime;
-	}
 	void SetAnimation(string name){
 		sprite.Animation = Enum.GetName(PlayerTeam.GetType(), PlayerTeam).ToLower() + "_" + name;
 	}
 	// Public methods
+	public void SetHLockoutTime(float time){
+		if(time > wallJumpClock) wallJumpClock = time;
+	}
+	public void SetVelocity(Vector2 velocity, float lockoutTime = 0){
+		SetHLockoutTime(lockoutTime);
+		Velocity = velocity;
+	}
+	public void Bounce(Vector2 position){
+		var dir = (Position - position).Normalized();
+		SetVelocity(dir * BounceSpeed, BounceTime);
+		// Velocity = dir * BounceSpeed;
+		// wallJumpClock = BounceTime;
+	}
 	public bool Die(){
 		// Returns false if the player cannot currently die i.e. dash immunity.
 		if(dashClock > 0.0f) return false;
