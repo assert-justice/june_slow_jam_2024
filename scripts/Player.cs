@@ -50,7 +50,8 @@ public partial class Player : CharacterBody2D
 		dashCollider = GetNode<CollisionShape2D>("DashBox/DashCollider");
 		hitBox = GetNode<CollisionShape2D>("HitBox");
 		sprite = GetNode<AnimatedSprite2D>("Sprite");
-		SetAnimation("default");
+		sprite.Play();
+		// SetAnimation("default");
 		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
 
@@ -118,7 +119,7 @@ public partial class Player : CharacterBody2D
 			velocity = move.Normalized() * DashSpeed;
 			dashClock = DashDuration;
 			Dashes--;
-			if(Dashes == 0) SetAnimation("default");
+			// if(Dashes == 0) SetAnimation("default");
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){
@@ -148,13 +149,20 @@ public partial class Player : CharacterBody2D
 			velocity.X = hSpeed;
 		}
 
+		// Update animation
+		var animName = "default";
+		if(isGrounded && hMove != 0.0f) animName = "running";
+		var anim = GenAnimation(animName);
+		if(sprite.Animation != anim) sprite.Animation = anim;
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}
 
 	// Utility methods
-	void SetAnimation(string name){
-		sprite.Animation = Enum.GetName(PlayerTeam.GetType(), PlayerTeam).ToLower() + "_" + name;
+	string GenAnimation(string name){
+		var winged = Dashes > 0 ? "winged" : "wingless";
+		return $"{Enum.GetName(PlayerTeam.GetType(), PlayerTeam).ToLower()}_{winged}_{name}";
 	}
 	// Public methods
 	public void SetHLockoutTime(float time){
@@ -181,7 +189,7 @@ public partial class Player : CharacterBody2D
 	public bool AddDash(){
 		// If already at max dashes, return false to indicate the powerup should not be consumed?
 		Dashes++;
-		SetAnimation("winged");
+		// SetAnimation("winged");
 		return true;
 	}
 	// Signal methods
