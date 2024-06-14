@@ -1,12 +1,6 @@
 using Godot;
 using System;
 
-// enum PlayerState{
-// 	Grounded,
-// 	Falling,
-// 	Ballistic,
-// 	Dashing,
-// }
 public partial class Player : CharacterBody2D
 {
 	public enum Team{
@@ -48,6 +42,8 @@ public partial class Player : CharacterBody2D
 	CollisionShape2D dashCollider;
 	CollisionShape2D hitBox;
 	AnimatedSprite2D sprite;
+	// Node references
+	Game game;
 	// Builtin methods
 	public override void _Ready()
 	{
@@ -55,6 +51,7 @@ public partial class Player : CharacterBody2D
 		hitBox = GetNode<CollisionShape2D>("HitBox");
 		sprite = GetNode<AnimatedSprite2D>("Sprite");
 		SetAnimation("default");
+		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -168,6 +165,7 @@ public partial class Player : CharacterBody2D
 	public bool Die(){
 		// Returns false if the player cannot currently die i.e. dash immunity.
 		if(dashClock > 0.0f) return false;
+		game.AddMessage(this, "die");
 		GetParent().RemoveChild(this);
 		QueueFree();
 		return true;
@@ -184,6 +182,7 @@ public partial class Player : CharacterBody2D
 		if(body is Player player){
 			if(player == this) return;
 			player.Die();
+			game.AddMessage(this, "kill", player);
 			Bounce(player.Position);
 		}
 	}
@@ -192,6 +191,7 @@ public partial class Player : CharacterBody2D
 		if(area.IsInGroup("Head")){
 			if(area.GetParent() is Player player){
 				player.Die();
+				game.AddMessage(this, "kill", player);
 				Bounce(player.Position);
 			}
 		}

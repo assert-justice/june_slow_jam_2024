@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://coj4njl6yawks"]
+[gd_scene load_steps=6 format=3 uid="uid://coj4njl6yawks"]
 
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_yfvsu"]
-[ext_resource type="PackedScene" uid="uid://cmg2tha1ppbae" path="res://scenes/levels/level_test.tscn" id="2_i3g6l"]
+[ext_resource type="PackedScene" uid="uid://hsbosg87oa2g" path="res://scenes/levels/level_test1.tscn" id="2_juc8p"]
+[ext_resource type="PackedScene" uid="uid://d2ixjkknhwsog" path="res://scenes/levels/level_test2.tscn" id="2_vfnx3"]
+[ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="3_yrxbm"]
+[ext_resource type="PackedScene" uid="uid://dlqrd1uj5uofr" path="res://scenes/levels/level_test3.tscn" id="4_gbtwh"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource("1_yfvsu")
+Levels = Array[PackedScene]([ExtResource("2_juc8p"), ExtResource("2_vfnx3"), ExtResource("4_gbtwh")])
+PlayerScene = ExtResource("3_yrxbm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(514, 289)
 
 [node name="LevelHolder" type="Node2D" parent="."]
-
-[node name="Level" parent="LevelHolder" instance=ExtResource("2_i3g6l")]
