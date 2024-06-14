@@ -19,14 +19,16 @@ public partial class Game : Node2D
 	}
 	Queue<Message> messages;
 	Queue<PackedScene> levelQueue;
-	Camera2D camera;
-	Node2D levelHolder;
 	List<Player> players;
 	List<PlayerSummary> summaries;
+	Camera2D camera;
+	Node2D levelHolder;
+	Timer timer;
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("Camera2D");
 		levelHolder = GetNode<Node2D>("LevelHolder");
+		timer = GetNode<Timer>("Timer");
 		PlayerSummary[] temp = {
 			new PlayerSummary("kb", Player.Team.Red),
 			new PlayerSummary("0", Player.Team.Green),
@@ -35,8 +37,6 @@ public partial class Game : Node2D
 		players = new();
 		messages = new();
 		levelQueue = new();
-		// SetLevel(Levels[0]);
-		// AdvanceLevel();
 		SetTournament(temp, 4);
 	}
 
@@ -58,20 +58,10 @@ public partial class Game : Node2D
 		// Remove dead players
 		players = players.Where(p => IsInstanceValid(p)).ToList();
 		// GD.Print(players.Count);
-		if(players.Count == 1){
+		if(players.Count == 1 && timer.IsStopped()){
 			var summary = summaries.Find(s => s.PlayerTeam == players[0].PlayerTeam);
 			summary.MatchWins++;
-			// Proceed to next match
-			// AdvanceLevel();
-			if(levelQueue.Count > 0) AdvanceLevel();
-			else{
-				// Show results screen
-				foreach (var s in summaries)
-				{
-					GD.Print(s.ToString());
-				}
-				ClearLevel();
-			}
+			timer.Start();
 		}
 	}
 
@@ -94,19 +84,8 @@ public partial class Game : Node2D
 		AdvanceLevel();
 	}
 	void AdvanceLevel(){
-		// if(currentLevel == Levels.Count()){
-		// 	// Show results screen
-		// 	foreach (var summary in summaries)
-		// 	{
-		// 		GD.Print(summary.ToString());
-		// 	}
-		// 	currentLevel++;
-		// 	return;
-		// }
-		// else if(currentLevel > Levels.Count()) return;
 		if(levelQueue.Count == 0) return;
 		SetLevel(levelQueue.Dequeue());
-		// currentLevel++;
 	}
 
 	void ClearLevel(){
@@ -151,5 +130,17 @@ public partial class Game : Node2D
 	}
 	public void AddMessage(Player sender, string message, Player receiver){
 		messages.Enqueue(new Message(sender.PlayerTeam, message, receiver.PlayerTeam));
+	}
+	private void _on_timer_timeout()
+	{
+		if(levelQueue.Count > 0) AdvanceLevel();
+		else{
+			// Show Results Screen
+			foreach (var s in summaries)
+			{
+				GD.Print(s.ToString());
+			}
+			ClearLevel();
+		}
 	}
 }

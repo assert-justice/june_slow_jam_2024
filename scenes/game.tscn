@@ -15,3 +15,8 @@ PlayerScene = ExtResource("3_yrxbm")
 position = Vector2(514, 289)
 
 [node name="LevelHolder" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
