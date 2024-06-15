@@ -192,9 +192,9 @@ public partial class Player : CharacterBody2D
 	public void SetHLockoutTime(float time){
 		if(time > wallJumpClock) wallJumpClock = time;
 	}
-	public void SetVelocity(Vector2 velocity, float lockoutTime = 0){
+	public void SetVelocity(Vector2 velocity, float lockoutTime = 0, bool add = false){
 		SetHLockoutTime(lockoutTime);
-		Velocity = velocity;
+		Velocity = add ? Velocity + velocity : velocity;
 	}
 	public void Bounce(Vector2 position){
 		var dir = (Position - position).Normalized();

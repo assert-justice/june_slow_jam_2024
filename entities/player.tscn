@@ -1264,6 +1264,7 @@ size = Vector2(22, 42)
 script = ExtResource("1_7ptrc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0nxpb")
 animation = &"yellow_wingless_falling"
 
