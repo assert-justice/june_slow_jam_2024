@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
 	[ExportGroup("Movement")]
 	[Export] public float Speed = 300.0f;
 	[Export] public float JumpVelocity = -200.0f;
-	[Export] public float BonusJumpVelocity = -200.0f;
+	[Export] public float BonusJumpVelocity = -300.0f;
 	[Export] public float GravityCoefficient = 0.65f;
 	[Export] public float CoyoteTime = 0.1f;
 	[Export] public float JumpBufferTime = 0.2f;
@@ -69,17 +69,19 @@ public partial class Player : CharacterBody2D
 			dashCollider.Disabled = !(dashClock > 0.0f);
 		}
 
+		bool onLeftWall = false;
+		bool onRightWall = false;
 		if(IsOnFloor()){
 			coyoteClock = CoyoteTime;
 			BonusJumps = 1;
 			// Dashes = 1;
 		}
 		else{
-			var left = TestMove(Transform, Vector2.Left * 4);
-			var right = TestMove(Transform, Vector2.Right * 4);
-			if(left) lastWallNormal = Vector2.Right;
-			if(right) lastWallNormal = Vector2.Left;
-			if(left || right) wallJumpBufferClock = JumpBufferTime;
+			onLeftWall = TestMove(Transform, Vector2.Left * 4);
+			onRightWall = TestMove(Transform, Vector2.Right * 4);
+			if(onLeftWall) lastWallNormal = Vector2.Right;
+			if(onRightWall) lastWallNormal = Vector2.Left;
+			if(onLeftWall || onRightWall) wallJumpBufferClock = JumpBufferTime;
 		}
 
 		// Setup movement vars
@@ -93,10 +95,12 @@ public partial class Player : CharacterBody2D
 		bool shouldJump = jumpJustPressed || jumpBufferClock > 0.0f;
 		Vector2 move = Input.GetVector(InputDevice + "_left", InputDevice + "_right", InputDevice + "_up", InputDevice + "_down");
 		float hMove = move.X;
-		if(hMove < 0.0f){
+		if(onLeftWall) sprite.FlipH = false;
+		else if(onRightWall) sprite.FlipH = true;
+		else if(hMove < 0.0f){
 			sprite.FlipH = true;
 		}
-		if(hMove > 0.0f){
+		else if(hMove > 0.0f){
 			sprite.FlipH = false;
 		}
 
@@ -113,18 +117,15 @@ public partial class Player : CharacterBody2D
 			if(canWallJump && velocity.Y > WallSlideSpeed) velocity.Y = WallSlideSpeed;
 		}
 
+		// Handle dash
 		if(dashJustPressed && Dashes > 0 && move.Length() > 0.0f){
-			// float hVel = 1.0f;
-			// if(hMove < 0) hVel = -1.0f;
-			// velocity.X = hVel * DashSpeed;
 			velocity = move.Normalized() * DashSpeed;
 			dashClock = DashDuration;
 			Dashes--;
-			// if(Dashes == 0) SetAnimation("default");
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){
-			velocity.Y = JumpVelocity;
+			velocity.Y = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
 			jumpBufferClock = 0.0f;
 			// Can cancel out of a dash by jumping
 			dashClock = 0.0f;
@@ -140,7 +141,8 @@ public partial class Player : CharacterBody2D
 		}
 		// Bonus jump
 		else if(jumpJustPressed && canBonusJump){
-			velocity.Y = BonusJumpVelocity;
+			// velocity.Y = BonusJumpVelocity;
+			velocity.Y = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
 			BonusJumps--;
 		}
 
