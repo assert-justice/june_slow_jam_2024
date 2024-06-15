@@ -81,7 +81,10 @@ public partial class Player : CharacterBody2D
 			onRightWall = TestMove(Transform, Vector2.Right * 4);
 			if(onLeftWall) lastWallNormal = Vector2.Right;
 			if(onRightWall) lastWallNormal = Vector2.Left;
-			if(onLeftWall || onRightWall) wallJumpBufferClock = JumpBufferTime;
+			if(onLeftWall || onRightWall) {
+				wallJumpBufferClock = JumpBufferTime;
+				if(BonusJumps < 1) BonusJumps = 1;
+			}
 		}
 
 		// Setup movement vars
