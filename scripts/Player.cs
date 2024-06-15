@@ -44,6 +44,7 @@ public partial class Player : CharacterBody2D
 	AnimatedSprite2D sprite;
 	// Node references
 	Game game;
+	string animState = "default";
 	// Builtin methods
 	public override void _Ready()
 	{
@@ -150,9 +151,27 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Update animation
-		var animName = "default";
-		if(isGrounded && hMove != 0.0f) animName = "running";
-		var anim = GenAnimation(animName);
+		if(velocity.Y < 0.0f){
+			//rising jump
+			animState = "jumping";
+			if(Velocity.Y >= 0.0f){
+				sprite.Play();
+			}
+			// sprite.iso
+		}
+		else if(isGrounded){
+			if(hMove != 0.0f) animState = "running";
+			else animState = "default";
+		}
+		else if(velocity.Y > 0.0f){
+			//falling
+			animState = "falling";
+		}
+		else{
+			animState = "default";
+		}
+		if(animState!="jumping" && !sprite.IsPlaying()) sprite.Play();
+		var anim = GenAnimation(animState);
 		if(sprite.Animation != anim) sprite.Animation = anim;
 
 		Velocity = velocity;

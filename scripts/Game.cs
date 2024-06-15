@@ -30,7 +30,7 @@ public partial class Game : Node2D
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		timer = GetNode<Timer>("Timer");
 		PlayerSummary[] temp = {
-			new PlayerSummary("kb", Player.Team.Red),
+			new PlayerSummary("kb", Player.Team.Blue),
 			new PlayerSummary("0", Player.Team.Green),
 		};
 		summaries = new();
