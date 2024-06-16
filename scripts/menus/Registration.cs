@@ -30,7 +30,10 @@ public partial class Registration : Control
     {
         this.playerSummary = playerSummary;
         
-        string labelText = $"Player {playerSummary.InputDevice}";
+        int playerNumber = playerSummary.InputDevice == "kb" ?
+            1 :
+            int.Parse(playerSummary.InputDevice) + 1; // 0-indexed
+        string labelText = $"Player {playerNumber}";
         if (playerSummary.MatchWins > 0)
         {
             labelText += $"\nWins: {playerSummary.MatchWins}";
