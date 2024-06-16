@@ -7,6 +7,7 @@ public partial class Lobby : Control
     Registration player2Registration;
     Registration player3Registration;
     Registration player4Registration;
+    Control readyMoon;
 
     [Signal]
     public delegate void StartGameEventHandler(Registration[] registrations);
@@ -24,6 +25,18 @@ public partial class Lobby : Control
         player2Registration = container.GetNode<Registration>("Player 2 Registration");
         player3Registration = container.GetNode<Registration>("Player 3 Registration");
         player4Registration = container.GetNode<Registration>("Player 4 Registration");
+
+        readyMoon = GetNode<Control>("Ready Moon");
+        readyMoon.Visible = false;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (active && CanStartGame()) {
+            readyMoon.Visible = true;
+        } else {
+            readyMoon.Visible = false;
+        }
     }
 
 
