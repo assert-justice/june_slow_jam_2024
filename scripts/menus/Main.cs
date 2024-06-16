@@ -20,6 +20,7 @@ public partial class Main : Control
 		menuStack = new Stack<string>();
 		lobby = GetNode<Lobby>("MenuHolder/Lobby");
 		lobby.StartGame += _on_lobby_start_game;
+		lobby.ExitLobby += _on_lobby_exit_lobby;
 		
 		SetMenu("Main");
 	}
@@ -167,5 +168,10 @@ public partial class Main : Control
 	private void _on_lobby_start_game(Registration[] registrations)
 	{
 		Launch(registrations.Select(r => r.GetPlayerSummary()).Where(s => s != null).ToArray());
+	}
+	private void _on_lobby_exit_lobby()
+	{
+		lobby.SetActive(false);
+		PopMenu();
 	}
 }
