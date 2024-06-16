@@ -1,0 +1,6 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cbgvh74h1qtid"]
+
+[ext_resource type="Texture2D" uid="uid://7blwcmr6t8qm" path="res://player-2-active-gradient.tres" id="1_n2v7y"]
+
+[resource]
+texture = ExtResource("1_n2v7y")

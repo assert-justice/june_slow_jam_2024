@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Main : Control
 {
@@ -8,6 +9,7 @@ public partial class Main : Control
 	PackedScene GameScene;
 	CanvasLayer gameHolder;
 	Control menuHolder;
+	Lobby lobby;
 	Stack<string> menuStack;
 	public override void _Ready()
 	{
@@ -15,6 +17,9 @@ public partial class Main : Control
 		gameHolder.Layer = -1;
 		menuHolder = GetNode<Control>("MenuHolder");
 		menuStack = new Stack<string>();
+		lobby = GetNode<Lobby>("MenuHolder/Lobby");
+		lobby.StartGame += _on_lobby_start_game;
+		
 		SetMenu("Main");
 	}
 	public override void _Process(double delta){
@@ -24,7 +29,11 @@ public partial class Main : Control
 		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused()){
 			// if(!IsPaused()) SetPaused(true);
 			if(menuStack.Peek() == "Pause") SetPaused(false);
-			else if(menuStack.Count > 1) PopMenu();
+			else if(menuStack.Count > 1) {
+
+				if(menuStack.Peek() == "Lobby") lobby.SetActive(false);
+				PopMenu();
+			}
 		}
 	}
 	bool IsPaused(){
@@ -105,7 +114,8 @@ public partial class Main : Control
 	}
 	private void _on_play_button_down()
 	{
-		Launch();
+		PushMenu("Lobby");
+		lobby.SetActive(true);
 	}
 	private void _on_options_button_down()
 	{
@@ -150,5 +160,9 @@ public partial class Main : Control
 	private void _on_voice_volume_slider_value_changed(double value)
 	{
 		SetBusVolume("Voice", value);
+	}
+	private void _on_lobby_start_game()
+	{
+		Launch();
 	}
 }
