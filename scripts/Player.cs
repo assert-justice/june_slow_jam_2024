@@ -74,7 +74,7 @@ public partial class Player : CharacterBody2D
 		if(IsOnFloor()){
 			coyoteClock = CoyoteTime;
 			BonusJumps = 1;
-			// Dashes = 1;
+			Dashes = 1;
 		}
 		else{
 			onLeftWall = TestMove(Transform, Vector2.Left * 4);
@@ -97,6 +97,8 @@ public partial class Player : CharacterBody2D
 		bool dashJustPressed = Input.IsActionJustPressed(InputDevice + "_dash");
 		bool shouldJump = jumpJustPressed || jumpBufferClock > 0.0f;
 		Vector2 move = Input.GetVector(InputDevice + "_left", InputDevice + "_right", InputDevice + "_up", InputDevice + "_down");
+		float moveAngle = Mathf.FloorToInt(move.Angle() / Mathf.Tau * 8);
+		// GD.Print(moveAngle);
 		float hMove = move.X;
 		if(onLeftWall) sprite.FlipH = false;
 		else if(onRightWall) sprite.FlipH = true;
@@ -123,6 +125,7 @@ public partial class Player : CharacterBody2D
 		// Handle dash
 		if(dashJustPressed && Dashes > 0 && move.Length() > 0.0f){
 			velocity = move.Normalized() * DashSpeed;
+
 			dashClock = DashDuration;
 			Dashes--;
 		}
@@ -156,7 +159,17 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Update animation
-		if(velocity.Y < 0.0f){
+		if(dashClock > 0.0f){
+			animState = "dashing";
+			sprite.Pause();
+			// Set frame based on direction
+			if(moveAngle == -2) sprite.Frame = 0;
+			if(moveAngle == -1 || moveAngle == -3) sprite.Frame = 1;
+			if(moveAngle == 0 || moveAngle == -4) sprite.Frame = 2;
+			if(moveAngle == 1 || moveAngle == 3) sprite.Frame = 3;
+			if(moveAngle == 2) sprite.Frame = 4;
+		}
+		else if(velocity.Y < 0.0f){
 			//rising jump
 			animState = "jumping";
 			if(Velocity.Y >= 0.0f){
@@ -175,7 +188,7 @@ public partial class Player : CharacterBody2D
 		else{
 			animState = "default";
 		}
-		if(animState!="jumping" && !sprite.IsPlaying()) sprite.Play();
+		if((animState!="jumping" || animState!="dashing") && !sprite.IsPlaying()) sprite.Play();
 		var anim = GenAnimation(animState);
 		if(sprite.Animation != anim) sprite.Animation = anim;
 
@@ -185,8 +198,10 @@ public partial class Player : CharacterBody2D
 
 	// Utility methods
 	string GenAnimation(string name){
+		var color = Enum.GetName(PlayerTeam.GetType(), PlayerTeam).ToLower();
 		var winged = Dashes > 0 ? "winged" : "wingless";
-		return $"{Enum.GetName(PlayerTeam.GetType(), PlayerTeam).ToLower()}_{winged}_{name}";
+		if (name!="dashing") return $"{color}_{winged}_{name}";
+		return $"{color}_dashing";
 	}
 	// Public methods
 	public void SetHLockoutTime(float time){
