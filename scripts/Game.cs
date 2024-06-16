@@ -37,7 +37,6 @@ public partial class Game : Node2D
 		players = new();
 		messages = new();
 		levelQueue = new();
-		SetTournament(temp, 4);
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class Main : Control
 {
@@ -96,14 +97,16 @@ public partial class Main : Control
 		menuStack.Push(name);
 		SelectMenu();
 	}
-	void Launch(){
+	void Launch(PlayerSummary[] playerSummaries){
 		foreach (var child in gameHolder.GetChildren())
 		{
 			child.QueueFree();
 		}
-		var game = GameScene.Instantiate();
+		var game = GameScene.Instantiate() as Game;
 		gameHolder.AddChild(game);
+		game.SetTournament(playerSummaries, 3);
 		menuHolder.Visible = false;
+		menuStack.Clear();
 		// gameHolder.ProcessMode = ProcessModeEnum.Always;
 		SetPaused(false);
 	}
@@ -161,8 +164,8 @@ public partial class Main : Control
 	{
 		SetBusVolume("Voice", value);
 	}
-	private void _on_lobby_start_game()
+	private void _on_lobby_start_game(Registration[] registrations)
 	{
-		Launch();
+		Launch(registrations.Select(r => r.GetPlayerSummary()).Where(s => s != null).ToArray());
 	}
 }
