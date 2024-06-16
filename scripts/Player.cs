@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D
 	[ExportGroup("Movement")]
 	[Export] public float Speed = 300.0f;
 	[Export] public float JumpVelocity = -200.0f;
-	[Export] public float BonusJumpVelocity = -300.0f;
+	[Export] public float BonusJumpVelocity = -200.0f;
 	[Export] public float GravityCoefficient = 0.65f;
 	[Export] public float CoyoteTime = 0.1f;
 	[Export] public float JumpBufferTime = 0.2f;
@@ -73,8 +73,8 @@ public partial class Player : CharacterBody2D
 		bool onRightWall = false;
 		if(IsOnFloor()){
 			coyoteClock = CoyoteTime;
-			BonusJumps = 1;
-			Dashes = 1;
+			if(Dashes > 0) BonusJumps = 1;
+			// Dashes = 1;
 		}
 		else{
 			onLeftWall = TestMove(Transform, Vector2.Left * 4);
@@ -83,7 +83,8 @@ public partial class Player : CharacterBody2D
 			if(onRightWall) lastWallNormal = Vector2.Left;
 			if(onLeftWall || onRightWall) {
 				wallJumpBufferClock = JumpBufferTime;
-				if(BonusJumps < 1) BonusJumps = 1;
+				// if(BonusJumps < 1) BonusJumps = 1;
+				if(Dashes > 0) BonusJumps = 1;
 			}
 		}
 
@@ -91,6 +92,7 @@ public partial class Player : CharacterBody2D
 		bool isGrounded = IsOnFloor() || coyoteClock > 0.0f;
 		// bool canJump = isGrounded || coyoteClock > 0.0f;
 		bool canBonusJump = BonusJumps > 0;
+		// bool canBonusJump = Dashes > 0;
 		bool canWallJump = IsOnWallOnly() || wallJumpBufferClock > 0.0f;
 		bool jumpJustPressed = Input.IsActionJustPressed(InputDevice + "_jump");
 		bool jumpPressed = Input.IsActionPressed(InputDevice + "_jump");
