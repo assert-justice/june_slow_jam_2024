@@ -9,7 +9,7 @@ public partial class Lobby : Control
     Registration player4Registration;
 
     [Signal]
-    public delegate void StartGameEventHandler();
+    public delegate void StartGameEventHandler(Registration[] registrations);
 
     bool active = false;
 
@@ -89,7 +89,8 @@ public partial class Lobby : Control
             GD.Print("Starting game...");
             // emit signal to start game
             active = false;
-            EmitSignal(SignalName.StartGame);
+            Registration[] registrations = new Registration[] { player1Registration, player2Registration, player3Registration, player4Registration };
+            EmitSignal(SignalName.StartGame, registrations);
         }
     }
 
