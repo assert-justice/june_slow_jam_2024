@@ -73,7 +73,8 @@ public partial class Player : CharacterBody2D
 		bool onRightWall = false;
 		if(IsOnFloor()){
 			coyoteClock = CoyoteTime;
-			if(Dashes > 0) BonusJumps = 1;
+			// if(Dashes > 0) BonusJumps = 1;
+			BonusJumps = 1;
 			// Dashes = 1;
 		}
 		else{
@@ -84,7 +85,7 @@ public partial class Player : CharacterBody2D
 			if(onLeftWall || onRightWall) {
 				wallJumpBufferClock = JumpBufferTime;
 				// if(BonusJumps < 1) BonusJumps = 1;
-				if(Dashes > 0) BonusJumps = 1;
+				BonusJumps = 1;
 			}
 		}
 
@@ -148,7 +149,7 @@ public partial class Player : CharacterBody2D
 			dashClock = 0.0f;
 		}
 		// Bonus jump
-		else if(jumpJustPressed && canBonusJump){
+		else if(jumpJustPressed && canBonusJump && Dashes > 0){
 			// velocity.Y = BonusJumpVelocity;
 			velocity.Y = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
 			BonusJumps--;
