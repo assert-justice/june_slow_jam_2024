@@ -99,6 +99,29 @@ layout_mode = 2
 [node name="Player 4 Registration" parent="MenuHolder/Lobby/HFlowContainer" instance=ExtResource("4_mc7w6")]
 layout_mode = 2
 
+[node name="Ready Moon" type="Control" parent="MenuHolder/Lobby"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1025.0
+offset_bottom = 97.0
+
+[node name="Moon" type="Polygon2D" parent="MenuHolder/Lobby/Ready Moon"]
+position = Vector2(-463, -381)
+scale = Vector2(3.23918, 3.23918)
+polygon = PackedVector2Array(200, 79, 214, 65, 228, 48, 244, 43, 258, 44, 305, 41, 360, 57, 388, 78, 398, 136, 380, 188, 347, 217, 300, 228, 249, 217, 211, 187, 187, 130)
+
+[node name="Label" type="Label" parent="MenuHolder/Lobby/Ready Moon"]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 133.0
+offset_right = 579.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "READY
+Press Start to begin!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Options" type="Control" parent="MenuHolder"]
 visible = false
 layout_mode = 1
