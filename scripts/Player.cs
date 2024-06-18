@@ -234,6 +234,9 @@ public partial class Player : CharacterBody2D
 		// SetAnimation("winged");
 		return true;
 	}
+	public static string GetTeamName(Team team){
+		return Enum.GetName(team.GetType(), team).ToLower();
+	}
 	// Signal methods
 	private void _on_dash_box_body_entered(Node2D body)
 	{

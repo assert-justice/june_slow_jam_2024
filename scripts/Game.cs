@@ -24,11 +24,13 @@ public partial class Game : Node2D
 	Camera2D camera;
 	Node2D levelHolder;
 	Timer timer;
+	Label results;
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("Camera2D");
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		timer = GetNode<Timer>("Timer");
+		results = GetNode<Label>("Results");
 		PlayerSummary[] temp = {
 			new PlayerSummary("kb", Player.Team.Blue),
 			new PlayerSummary("0", Player.Team.Green),
@@ -135,10 +137,13 @@ public partial class Game : Node2D
 		if(levelQueue.Count > 0) AdvanceLevel();
 		else{
 			// Show Results Screen
+			var str = "";
 			foreach (var s in summaries)
 			{
-				GD.Print(s.ToString());
+				str += s.ToString() + "\n";
 			}
+			results.Text = str;
+			results.Visible = true;
 			ClearLevel();
 		}
 	}
