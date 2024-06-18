@@ -11,7 +11,7 @@ public partial class Launcher : Area2D
 	private void _on_body_entered(Node2D body)
 	{
 		if(body is Player player){
-			player.SetVelocity(Vector2.Up * 600.0f, player.Velocity.X);
+			player.SetVelocity(Vector2.Up * 600.0f + Vector2.Right * player.Velocity.X);
 			sprite.Play();
 		}
 	}
