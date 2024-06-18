@@ -60,6 +60,7 @@ public partial class Game : Node2D
 		players = players.Where(p => IsInstanceValid(p)).ToList();
 		// GD.Print(players.Count);
 		if(players.Count == 1 && timer.IsStopped()){
+			players[0].Win();
 			var summary = summaries.Find(s => s.PlayerTeam == players[0].PlayerTeam);
 			summary.MatchWins++;
 			timer.Start();

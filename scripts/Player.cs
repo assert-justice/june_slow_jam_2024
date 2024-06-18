@@ -35,6 +35,7 @@ public partial class Player : CharacterBody2D
 	float wallJumpBufferClock = 0.0f;
 	float wallJumpClock = 0.0f;
 	float dashClock = 0.0f;
+	bool hasDancePlayed = false;
 	Vector2 lastWallNormal = Vector2.Zero;
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -58,6 +59,20 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(animState == "dancing"){
+			if(!IsOnFloor()){
+
+				var v = Velocity;
+				v.Y += gravity * (float)delta;
+				Velocity = v;
+				MoveAndSlide();
+			}
+			else if(!sprite.IsPlaying() && !hasDancePlayed){
+				 sprite.Play();
+				 hasDancePlayed = true;
+			}
+			return;
+		}
 		float dt = (float) delta;
 		// Decrement clocks
 		if(coyoteClock > 0.0f) coyoteClock -= dt;
@@ -115,6 +130,7 @@ public partial class Player : CharacterBody2D
 		// Handle movement
 		
 		Vector2 velocity = Velocity;
+		bool justJumped = false;
 
 		// Add the gravity.
 		if(!isGrounded && dashClock <= 0.0f){
@@ -138,6 +154,7 @@ public partial class Player : CharacterBody2D
 			jumpBufferClock = 0.0f;
 			// Can cancel out of a dash by jumping
 			dashClock = 0.0f;
+			justJumped = true;
 		}
 		// Wall jump
 		else if(canWallJump && shouldJump){
@@ -147,12 +164,14 @@ public partial class Player : CharacterBody2D
 			velocity = jumpDir * WallJumpSpeed;
 			wallJumpClock = WallJumpDuration;
 			dashClock = 0.0f;
+			justJumped = true;
 		}
 		// Bonus jump
 		else if(jumpJustPressed && canBonusJump && Dashes > 0){
 			// velocity.Y = BonusJumpVelocity;
 			velocity.Y = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
 			BonusJumps--;
+			justJumped = true;
 		}
 
 		// Handle horizontal movement
@@ -175,7 +194,7 @@ public partial class Player : CharacterBody2D
 		else if(velocity.Y < 0.0f){
 			//rising jump
 			animState = "jumping";
-			if(Velocity.Y >= 0.0f){
+			if(justJumped){
 				sprite.Play();
 			}
 			// sprite.iso
@@ -186,12 +205,18 @@ public partial class Player : CharacterBody2D
 		}
 		else if(velocity.Y > 0.0f){
 			//falling
-			animState = "falling";
+			// animState = "falling";
+			if(onLeftWall || onRightWall) animState = "slide";
+			else animState = "falling";
 		}
 		else{
 			animState = "default";
 		}
-		if((animState!="jumping" || animState!="dashing") && !sprite.IsPlaying()) sprite.Play();
+		// if((animState!="jumping" || animState!="dashing") && !sprite.IsPlaying()) sprite.Play();
+		if(animState == "jumping"){}
+		else if(animState == "dashing"){}
+		else if(!sprite.IsPlaying()){sprite.Play();}
+
 		var anim = GenAnimation(animState);
 		if(sprite.Animation != anim) sprite.Animation = anim;
 
@@ -236,6 +261,11 @@ public partial class Player : CharacterBody2D
 	}
 	public static string GetTeamName(Team team){
 		return Enum.GetName(team.GetType(), team).ToLower();
+	}
+	public void Win(){
+		animState = "dancing";
+		sprite.Animation = GenAnimation("dancing");
+		sprite.Stop();
 	}
 	// Signal methods
 	private void _on_dash_box_body_entered(Node2D body)

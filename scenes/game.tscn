@@ -17,6 +17,7 @@ position = Vector2(514, 289)
 [node name="LevelHolder" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [node name="Results" type="Label" parent="."]

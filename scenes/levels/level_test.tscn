@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmg2tha1ppbae"]
+[gd_scene load_steps=6 format=3 uid="uid://cmg2tha1ppbae"]
 
 [ext_resource type="PackedScene" uid="uid://d2p8pusadm75o" path="res://entities/background.tscn" id="1_ecd0q"]
 [ext_resource type="TileSet" uid="uid://brxxpe6u4vbo1" path="res://tilesets/general_tile_set.tres" id="2_lvf5y"]
 [ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="2_x0y4o"]
 [ext_resource type="PackedScene" uid="uid://ba8mr6b64e07e" path="res://entities/pickup.tscn" id="3_oyac1"]
+[ext_resource type="PackedScene" uid="uid://fwfochtrmm77" path="res://entities/Launcher.tscn" id="5_gd0j1"]
 
 [node name="Level" type="Node2D"]
 
@@ -19,9 +20,11 @@ position = Vector2(243, 118)
 InputDevice = "0"
 
 [node name="Player2" parent="." instance=ExtResource("2_x0y4o")]
-position = Vector2(441, 233)
-InputDevice = "1"
+position = Vector2(859, 238)
 PlayerTeam = 3
 
 [node name="Pickup" parent="." instance=ExtResource("3_oyac1")]
 position = Vector2(144, 148)
+
+[node name="Launcher" parent="." instance=ExtResource("5_gd0j1")]
+position = Vector2(855, 551)
