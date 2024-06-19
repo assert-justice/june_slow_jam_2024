@@ -64,6 +64,7 @@ public partial class Lobby : Control
             active = false;
             Registration[] registrations = new Registration[] { player1Registration, player2Registration, player3Registration, player4Registration };
             EmitSignal(SignalName.StartGame, registrations);
+			GetViewport().SetInputAsHandled();
         }
     }
 
@@ -98,12 +99,14 @@ public partial class Lobby : Control
             GD.Print($"Player {slot + 1} joined! ({@event.Device}, {deviceName})");
             registration.Register(new PlayerSummary(deviceName, team), slot);
             deviceToSlot.Add(@event.Device, slot);
+			GetViewport().SetInputAsHandled();
         }
     }
 
     private void HandleUnjoinInput(InputEvent @event)
     {
         if(!@event.IsActionPressed("unjoin")) return;
+        if (!deviceToSlot.ContainsKey(@event.Device)) return;
 
         switch(deviceToSlot[@event.Device]) {
             case 0:
@@ -111,6 +114,7 @@ public partial class Lobby : Control
                     GD.Print("Player 1 left");
                     player1Registration.Unregister();
                     deviceToSlot.Remove(@event.Device);
+                    GetViewport().SetInputAsHandled();
                 }
                 break;
             case 1:
@@ -118,6 +122,7 @@ public partial class Lobby : Control
                     GD.Print("Player 2 left");
                     player2Registration.Unregister();
                     deviceToSlot.Remove(@event.Device);
+                    GetViewport().SetInputAsHandled();
                 }
                 break;
             case 2:
@@ -125,13 +130,15 @@ public partial class Lobby : Control
                     GD.Print("Player 3 left");
                     player3Registration.Unregister();
                     deviceToSlot.Remove(@event.Device);
+                    GetViewport().SetInputAsHandled();
                 }
                 break;
             case 3:
                 if (player4Registration.IsRegistered()) {
                     GD.Print("Player 4 left");
                     player4Registration.Unregister();
-                    deviceToSlot.Remove(@event.Device);
+                    deviceToSlot.Remove(@event.Device);        
+                    GetViewport().SetInputAsHandled();
                 }
                 break;
         } 
@@ -149,6 +156,7 @@ public partial class Lobby : Control
             player4Registration.Unregister();
             deviceToSlot.Clear();
             EmitSignal(SignalName.ExitLobby);
+            GetViewport().SetInputAsHandled();
         }
     }
 
