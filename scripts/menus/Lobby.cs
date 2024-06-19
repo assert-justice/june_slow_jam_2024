@@ -57,7 +57,7 @@ public partial class Lobby : Control
         HandleUnjoinInput(@event);
         HandleJoinInput(@event);
 
-        if (Input.IsActionJustPressed("start") && CanStartGame())
+        if (@event.IsActionPressed("start") && CanStartGame())
         {
             GD.Print("Starting game...");
             // emit signal to start game
