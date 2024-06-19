@@ -24,19 +24,21 @@ public partial class Main : Control
 		
 		SetMenu("Main");
 	}
-	public override void _Process(double delta){
-		if(Input.IsActionJustPressed("pause") && !IsPaused() && menuStack.Peek() != "Lobby"){
+    public override void _Input(InputEvent @event)
+    {
+        if(@event.IsActionPressed("pause") && !IsPaused()){
 			SetPaused(true);
+			GetViewport().SetInputAsHandled();
 		}
-		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused() && menuStack.Peek() != "Lobby"){
-			// if(!IsPaused()) SetPaused(true);
+		else if (@event.IsActionPressed("ui_cancel") && IsPaused()){
 			if(menuStack.Peek() == "Pause") SetPaused(false);
 			else if(menuStack.Count > 1) {
 				PopMenu();
 			}
+			GetViewport().SetInputAsHandled();
 		}
-	}
-	bool IsPaused(){
+    }
+    bool IsPaused(){
 		return gameHolder.ProcessMode == ProcessModeEnum.Disabled;
 	}
 	void SetPaused(bool paused){
