@@ -28,12 +28,10 @@ public partial class Main : Control
 		if(Input.IsActionJustPressed("pause") && !IsPaused()){
 			SetPaused(true);
 		}
-		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused()){
+		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused() && menuStack.Peek() != "Lobby"){
 			// if(!IsPaused()) SetPaused(true);
 			if(menuStack.Peek() == "Pause") SetPaused(false);
 			else if(menuStack.Count > 1) {
-
-				if(menuStack.Peek() == "Lobby") lobby.SetActive(false);
 				PopMenu();
 			}
 		}

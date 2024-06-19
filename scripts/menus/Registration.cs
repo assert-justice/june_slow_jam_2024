@@ -26,36 +26,29 @@ public partial class Registration : Control
         player4StyleBox = ResourceLoader.Load("res://player-4-active-panel-texture.tres") as StyleBoxTexture;
     }
 
-    public void Register(PlayerSummary playerSummary)
+    public void Register(PlayerSummary playerSummary, int slot)
     {
         this.playerSummary = playerSummary;
         
-        int playerNumber = playerSummary.InputDevice == "kb" ?
-            1 :
-            int.Parse(playerSummary.InputDevice) + 1; // 0-indexed
-        string labelText = $"Player {playerNumber}";
+        string labelText = $"Player {slot + 1}";// 0-indexed
         if (playerSummary.MatchWins > 0)
         {
             labelText += $"\nWins: {playerSummary.MatchWins}";
         }
-
         label.Text = labelText;
 
-        switch(playerSummary.InputDevice)
+        switch(slot)
         {
-            case "kb":
+            case 0:
                 panel.AddThemeStyleboxOverride("panel", player1StyleBox);
                 break;
-            case "0":
-                panel.AddThemeStyleboxOverride("panel", player1StyleBox);
-                break;
-            case "1":
+            case 1:
                 panel.AddThemeStyleboxOverride("panel", player2StyleBox);
                 break;
-            case "2":
+            case 2:
                 panel.AddThemeStyleboxOverride("panel", player3StyleBox);
                 break;
-            case "3":
+            case 3:
                 panel.AddThemeStyleboxOverride("panel", player4StyleBox);
                 break;
         }

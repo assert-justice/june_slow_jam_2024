@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d15y6ij0l27qx"]
+
+[resource]
+resource_name = "M_TrailerWheels"
+cull_mode = 2
+diffuse_mode = 3
+albedo_color = Color(0.0827416, 0.0827414, 0.0827413, 1)

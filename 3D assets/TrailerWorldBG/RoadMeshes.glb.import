@@ -1,0 +1,77 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://i2fhofdstupb"
+path="res://.godot/imported/RoadMeshes.glb-dd0aedb2535b5eea5814b066492859ac.scn"
+
+[deps]
+
+source_file="res://3D assets/TrailerWorldBG/RoadMeshes.glb"
+dest_files=["res://.godot/imported/RoadMeshes.glb-dd0aedb2535b5eea5814b066492859ac.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=false
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"M_RoadGround": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_RoadGround.tres"
+},
+"M_RoadRocks": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_RoadRocks.tres"
+}
+},
+"meshes": {
+"RoadMeshes_Mesh": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+},
+"RoadMeshes_wSphere_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+},
+"RoadMeshes_wSphere_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/make_streamable": "",
+"save_to_file/path": ""
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

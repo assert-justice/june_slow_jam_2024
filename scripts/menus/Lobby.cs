@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Lobby : Control
 {
@@ -8,6 +10,7 @@ public partial class Lobby : Control
     Registration player3Registration;
     Registration player4Registration;
     Control readyMoon;
+    Dictionary<int, int> deviceToSlot;
 
     [Signal]
     public delegate void StartGameEventHandler(Registration[] registrations);
@@ -28,6 +31,8 @@ public partial class Lobby : Control
 
         readyMoon = GetNode<Control>("Ready Moon");
         readyMoon.Visible = false;
+
+        deviceToSlot = new Dictionary<int, int>();
     }
 
     public override void _Process(double delta)
@@ -47,9 +52,10 @@ public partial class Lobby : Control
     public override void _Input(InputEvent @event)
     {
         if (!active) return; // @todo: convert to using SetProcessInput
-        HandleCancelInput();
-        HandleUnjoinInput();
-        HandleJoinInput();
+
+        HandleCancelInput(@event);
+        HandleUnjoinInput(@event);
+        HandleJoinInput(@event);
 
         if (Input.IsActionJustPressed("start") && CanStartGame())
         {
@@ -61,77 +67,87 @@ public partial class Lobby : Control
         }
     }
 
+    private (int, Player.Team, Registration) GetFirstAvailableRegistration() {
+        if (!player1Registration.IsRegistered()) {
+            return (0, Player.Team.Blue, player1Registration);
+        }
+        if (!player2Registration.IsRegistered()) {
+            return (1, Player.Team.Red, player2Registration);
+        }
+        if (!player3Registration.IsRegistered()) {
+            return (2, Player.Team.Yellow, player3Registration);
+        }
+        if (!player4Registration.IsRegistered()) {
+            return (3, Player.Team.Green, player4Registration);
+        }
+        return (-1, Player.Team.Yellow, null);
+    }
 
-    private void HandleJoinInput()
+
+    private void HandleJoinInput(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("kb_join") && !player1Registration.IsRegistered())
-        {
-            GD.Print("Player 1 joined");
-            player1Registration.Register(new PlayerSummary("kb", Player.Team.Blue));
-        }
-        if (Input.IsActionJustPressed("0_join") && !player1Registration.IsRegistered())
-        {
-            GD.Print("Player 1 joined");
-            player1Registration.Register(new PlayerSummary("0", Player.Team.Blue));
-        }
-        if (Input.IsActionJustPressed("1_join") && !player2Registration.IsRegistered())
-        {
-            GD.Print("Player 2 joined");
-            player2Registration.Register(new PlayerSummary("1", Player.Team.Red));
-        }
-        if (Input.IsActionJustPressed("2_join") && !player3Registration.IsRegistered())
-        {
-            GD.Print("Player 3 joined");
-            player3Registration.Register(new PlayerSummary("2", Player.Team.Yellow));
-        }
-        if (Input.IsActionJustPressed("3_join") && !player4Registration.IsRegistered())
-        {
-            GD.Print("Player 4 joined");
-            player4Registration.Register(new PlayerSummary("3", Player.Team.Green));
+        if(@event.IsActionPressed("join")) {
+            if(deviceToSlot.ContainsKey(@event.Device)) return; // already joined
+
+            var (slot, team, registration) = GetFirstAvailableRegistration();
+            if (slot == -1) {
+                return; // no slots available
+            }
+
+            string deviceName = @event.Device == 0 && @event is InputEventKey ? "kb" : @event.Device.ToString();
+            GD.Print($"Player {slot + 1} joined! ({@event.Device}, {deviceName})");
+            registration.Register(new PlayerSummary(deviceName, team), slot);
+            deviceToSlot.Add(@event.Device, slot);
         }
     }
 
-    private void HandleUnjoinInput()
+    private void HandleUnjoinInput(InputEvent @event)
     {
-        if (Input.IsActionJustPressed("kb_unjoin") && player1Registration.IsRegistered())
-        {
-            GD.Print("Player 1 left");
-            player1Registration.Unregister();
-        }
-        if (Input.IsActionJustPressed("0_unjoin") && player1Registration.IsRegistered())
-        {
-            GD.Print("Player 1 left");
-            player1Registration.Unregister();
-        }
-        if (Input.IsActionJustPressed("1_unjoin") && player2Registration.IsRegistered())
-        {
-            GD.Print("Player 2 left");
-            player2Registration.Unregister();
-        }
-        if (Input.IsActionJustPressed("2_unjoin") && player3Registration.IsRegistered())
-        {
-            GD.Print("Player 3 left");
-            player3Registration.Unregister();
-        }
-        if (Input.IsActionJustPressed("3_unjoin") && player4Registration.IsRegistered())
-        {
-            GD.Print("Player 4 left");
-            player4Registration.Unregister();
-        }
+        if(!@event.IsActionPressed("unjoin")) return;
+
+        switch(deviceToSlot[@event.Device]) {
+            case 0:
+                if (player1Registration.IsRegistered()) {
+                    GD.Print("Player 1 left");
+                    player1Registration.Unregister();
+                    deviceToSlot.Remove(@event.Device);
+                }
+                break;
+            case 1:
+                if (player2Registration.IsRegistered()) {
+                    GD.Print("Player 2 left");
+                    player2Registration.Unregister();
+                    deviceToSlot.Remove(@event.Device);
+                }
+                break;
+            case 2:
+                if (player3Registration.IsRegistered()) {
+                    GD.Print("Player 3 left");
+                    player3Registration.Unregister();
+                    deviceToSlot.Remove(@event.Device);
+                }
+                break;
+            case 3:
+                if (player4Registration.IsRegistered()) {
+                    GD.Print("Player 4 left");
+                    player4Registration.Unregister();
+                    deviceToSlot.Remove(@event.Device);
+                }
+                break;
+        } 
     }
 
-    private void HandleCancelInput() {
-        if (Input.IsActionJustPressed("kb_unjoin") && !player1Registration.IsRegistered()
-        || Input.IsActionJustPressed("0_unjoin") && !player1Registration.IsRegistered()
-        || Input.IsActionJustPressed("1_unjoin") && !player2Registration.IsRegistered()
-        || Input.IsActionJustPressed("2_unjoin") && !player3Registration.IsRegistered()
-        || Input.IsActionJustPressed("3_unjoin") && !player4Registration.IsRegistered())
+    private void HandleCancelInput(InputEvent @event) {
+        if(!@event.IsActionPressed("unjoin")) return;
+
+        if (!deviceToSlot.ContainsKey(@event.Device))
         {
             GD.Print("Exiting lobby");
             player1Registration.Unregister();
             player2Registration.Unregister();
             player3Registration.Unregister();
             player4Registration.Unregister();
+            deviceToSlot.Clear();
             EmitSignal(SignalName.ExitLobby);
         }
     }

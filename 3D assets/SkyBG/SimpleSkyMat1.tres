@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d1ntg6p5g4ddd"]
+
+[ext_resource type="Shader" uid="uid://bs3oi2xg3ywdt" path="res://3D assets/SkyBG/SimpleSkyShader.tres" id="1_skjs8"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = -4
+shader = ExtResource("1_skjs8")
+shader_parameter/Color = Color(0.103575, 0.0840965, 0.14399, 1)

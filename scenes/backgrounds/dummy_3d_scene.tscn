@@ -1,4 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4kydlv7m2vn8"]
+[gd_scene load_steps=12 format=3 uid="uid://b4kydlv7m2vn8"]
+
+[ext_resource type="Material" uid="uid://d1ntg6p5g4ddd" path="res://3D assets/BGs/SimpleSkyMat1.tres" id="1_ccr43"]
+[ext_resource type="Material" uid="uid://ikfps5mvd7n0" path="res://3D assets/BGs/StarMat.tres" id="1_prkvi"]
+[ext_resource type="ArrayMesh" uid="uid://csdu3oftn7ykt" path="res://3D assets/BGs/Stars.obj" id="2_7428x"]
+[ext_resource type="ArrayMesh" uid="uid://mp2nuomjb4nx" path="res://3D assets/BGs/SkySphere.obj" id="2_dflc3"]
+[ext_resource type="Material" uid="uid://c3qmmdkgmvdpa" path="res://3D assets/BGs/SimpleSkyMat2.tres" id="3_sid1t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l5oo5"]
 
@@ -7,8 +13,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_gyp74"]
 size = Vector3(5.99927, 1, 4.43408)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hba22"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_jmb5q"]
 size = Vector3(10, 0.2, 5)
+
+[sub_resource type="Environment" id="Environment_8xoc3"]
+background_mode = 1
+background_color = Color(0.068594, 0.0435571, 0.107371, 1)
 
 [node name="3D Scene" type="Node3D"]
 
@@ -32,8 +44,36 @@ shape = SubResource("BoxShape3D_gyp74")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74855, 0, -2.18406)
+material_override = SubResource("StandardMaterial3D_hba22")
 mesh = SubResource("BoxMesh_jmb5q")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.827061, 0.562112, 0, -0.562112, 0.827061, 0, -0.228526, -3.34459)
 spot_range = 4.75
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8xoc3")
+
+[node name="SkyBGs" type="Node" parent="."]
+
+[node name="SkySphere1" type="MeshInstance3D" parent="SkyBGs"]
+process_priority = -1
+transform = Transform3D(-2.66172, -2.95488e-16, 2.32695e-07, 5.68022e-08, 2.5812, 0.649741, -2.25656e-07, 0.649741, -2.5812, 0, 0, 0)
+sorting_offset = -8.695
+material_override = ExtResource("1_ccr43")
+mesh = ExtResource("2_dflc3")
+skeleton = NodePath("../..")
+
+[node name="SkySphere2" type="MeshInstance3D" parent="SkyBGs"]
+process_priority = -1
+transform = Transform3D(-2.16773, 3.51922e-15, 1.89509e-07, 2.17783e-08, 2.15337, 0.249115, -1.88253e-07, 0.249115, -2.15337, 0, 0, 0)
+sorting_offset = -8.695
+material_override = ExtResource("3_sid1t")
+mesh = ExtResource("2_dflc3")
+skeleton = NodePath("../..")
+
+[node name="Stars" type="MeshInstance3D" parent="SkyBGs"]
+transform = Transform3D(-6.23563e-08, 0, -1.31484, 0, 1.31484, 0, 1.42655, 0, -5.74732e-08, 0, 0, 0)
+material_override = ExtResource("1_prkvi")
+mesh = ExtResource("2_7428x")
+skeleton = NodePath("../..")
