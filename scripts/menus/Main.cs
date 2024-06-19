@@ -25,7 +25,7 @@ public partial class Main : Control
 		SetMenu("Main");
 	}
 	public override void _Process(double delta){
-		if(Input.IsActionJustPressed("pause") && !IsPaused()){
+		if(Input.IsActionJustPressed("pause") && !IsPaused() && menuStack.Peek() != "Lobby"){
 			SetPaused(true);
 		}
 		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused() && menuStack.Peek() != "Lobby"){
