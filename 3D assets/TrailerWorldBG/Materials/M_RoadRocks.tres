@@ -2,7 +2,8 @@
 
 [resource]
 resource_name = "M_RoadRocks"
+depth_draw_mode = 1
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.143506, 0.120558, 0.110552, 1)
-proximity_fade_distance = 2.4
+proximity_fade_distance = 14.95

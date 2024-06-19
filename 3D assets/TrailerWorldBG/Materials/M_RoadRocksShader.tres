@@ -1,3 +1,7 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://cfegftpbsbsn"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cfegftpbsbsn"]
+
+[ext_resource type="Shader" uid="uid://c26vr26vawahh" path="res://3D assets/TrailerWorldBG/Materials/RoadRockShader.tres" id="1_wm8aa"]
 
 [resource]
+render_priority = 0
+shader = ExtResource("1_wm8aa")

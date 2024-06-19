@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ikfps5mvd7n0"]
 
-[ext_resource type="Shader" uid="uid://dxq6fqkaenrn7" path="res://3D assets/BGs/StarShader.tres" id="1_6r2hh"]
+[ext_resource type="Shader" uid="uid://dxq6fqkaenrn7" path="res://3D assets/SkyBG/StarShader.tres" id="1_6r2hh"]
 
 [resource]
 render_priority = 0

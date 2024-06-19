@@ -31,6 +31,10 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
+"M_Grass": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_Grass.tres"
+},
 "M_RoadGround": {
 "use_external/enabled": true,
 "use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_RoadGround.tres"

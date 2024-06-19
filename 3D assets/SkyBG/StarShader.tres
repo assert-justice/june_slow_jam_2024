@@ -122,7 +122,7 @@ default_value = Color(0.823885, 0.70494, 0.319427, 1)
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_toon, specular_disabled, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
 
 uniform vec4 StarColor_3 : source_color = vec4(0.963036, 0.914327, 0.630088, 1.000000);
 uniform vec4 StarColor_4 : source_color = vec4(0.901672, 0.632163, 0.500977, 1.000000);
@@ -205,7 +205,8 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-332.555, -265.052)
+graph_offset = Vector2(-152.859, -56.7129)
+modes/cull = 2
 modes/diffuse = 3
 modes/specular = 2
 flags/unshaded = true
