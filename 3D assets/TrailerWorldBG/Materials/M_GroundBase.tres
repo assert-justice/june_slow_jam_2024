@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtsy6p1g5d4ik"]
+
+[resource]
+resource_name = "M_GroundBase"
+cull_mode = 2
+albedo_color = Color(0.0664, 0.08, 0.0754667, 1)

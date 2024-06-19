@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://brbf14tqvapsj"]
+
+[resource]
+resource_name = "M_RoadGround"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.25, 0.187667, 0.14, 1)

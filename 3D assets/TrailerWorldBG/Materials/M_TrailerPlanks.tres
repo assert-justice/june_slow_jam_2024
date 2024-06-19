@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bo2jsxxi8p5sa"]
+
+[resource]
+resource_name = "M_TrailerPlanks"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.461994, 0.321174, 0.198825, 1)
+roughness = 0.85

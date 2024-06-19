@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://csdu3oftn7ykt"
+path="res://.godot/imported/Stars.obj-cb5f74771254b51a50653f40d130d75e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Stars.obj-cb5f74771254b51a50653f40d130d75e.mesh"]
+
+source_file="res://3D assets/SkyBG/Stars.obj"
+dest_files=["res://.godot/imported/Stars.obj-cb5f74771254b51a50653f40d130d75e.mesh", "res://.godot/imported/Stars.obj-cb5f74771254b51a50653f40d130d75e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=false
+force_disable_mesh_compression=false

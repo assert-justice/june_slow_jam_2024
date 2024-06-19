@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://tdvufht5p6mk"]
+
+[resource]
+resource_name = "M_DistantHills"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.0980571, 0.116884, 0.156384, 1)
