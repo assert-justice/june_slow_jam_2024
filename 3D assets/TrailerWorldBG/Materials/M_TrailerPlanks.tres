@@ -5,5 +5,6 @@ resource_name = "M_TrailerPlanks"
 cull_mode = 2
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.461994, 0.321174, 0.198825, 1)
+albedo_color = Color(0.274028, 0.182909, 0.103441, 1)
+metallic_specular = 0.45
 roughness = 0.85

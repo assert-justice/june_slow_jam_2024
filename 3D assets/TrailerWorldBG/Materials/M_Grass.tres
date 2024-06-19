@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bjxam6drhlok2"]
+
+[ext_resource type="Shader" path="res://3D assets/TrailerWorldBG/Materials/grass.gdshader" id="1_vptiu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vptiu")
+shader_parameter/color = Color(0.2484, 0.36, 0.31908, 1)
+shader_parameter/color2 = Color(0.247059, 0.360784, 0.317647, 1)
+shader_parameter/noiseScale = 20.0
