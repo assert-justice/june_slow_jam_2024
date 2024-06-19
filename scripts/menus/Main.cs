@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 public partial class Main : Control
 {
@@ -8,6 +10,7 @@ public partial class Main : Control
 	PackedScene GameScene;
 	CanvasLayer gameHolder;
 	Control menuHolder;
+	Lobby lobby;
 	Stack<string> menuStack;
 	public override void _Ready()
 	{
@@ -15,6 +18,10 @@ public partial class Main : Control
 		gameHolder.Layer = -1;
 		menuHolder = GetNode<Control>("MenuHolder");
 		menuStack = new Stack<string>();
+		lobby = GetNode<Lobby>("MenuHolder/Lobby");
+		lobby.StartGame += _on_lobby_start_game;
+		lobby.ExitLobby += _on_lobby_exit_lobby;
+		
 		SetMenu("Main");
 	}
 	public override void _Process(double delta){
@@ -24,7 +31,11 @@ public partial class Main : Control
 		else if(Input.IsActionJustPressed("ui_cancel") && IsPaused()){
 			// if(!IsPaused()) SetPaused(true);
 			if(menuStack.Peek() == "Pause") SetPaused(false);
-			else if(menuStack.Count > 1) PopMenu();
+			else if(menuStack.Count > 1) {
+
+				if(menuStack.Peek() == "Lobby") lobby.SetActive(false);
+				PopMenu();
+			}
 		}
 	}
 	bool IsPaused(){
@@ -87,14 +98,16 @@ public partial class Main : Control
 		menuStack.Push(name);
 		SelectMenu();
 	}
-	void Launch(){
+	void Launch(PlayerSummary[] playerSummaries){
 		foreach (var child in gameHolder.GetChildren())
 		{
 			child.QueueFree();
 		}
-		var game = GameScene.Instantiate();
+		var game = GameScene.Instantiate() as Game;
 		gameHolder.AddChild(game);
+		game.SetTournament(playerSummaries, 3);
 		menuHolder.Visible = false;
+		menuStack.Clear();
 		// gameHolder.ProcessMode = ProcessModeEnum.Always;
 		SetPaused(false);
 	}
@@ -105,7 +118,8 @@ public partial class Main : Control
 	}
 	private void _on_play_button_down()
 	{
-		Launch();
+		PushMenu("Lobby");
+		lobby.SetActive(true);
 	}
 	private void _on_options_button_down()
 	{
@@ -150,5 +164,14 @@ public partial class Main : Control
 	private void _on_voice_volume_slider_value_changed(double value)
 	{
 		SetBusVolume("Voice", value);
+	}
+	private void _on_lobby_start_game(Registration[] registrations)
+	{
+		Launch(registrations.Select(r => r.GetPlayerSummary()).Where(s => s != null).ToArray());
+	}
+	private void _on_lobby_exit_lobby()
+	{
+		lobby.SetActive(false);
+		PopMenu();
 	}
 }

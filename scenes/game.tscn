@@ -1,14 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://coj4njl6yawks"]
+[gd_scene load_steps=6 format=3 uid="uid://coj4njl6yawks"]
 
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_yfvsu"]
-[ext_resource type="PackedScene" uid="uid://cmg2tha1ppbae" path="res://scenes/levels/level_test.tscn" id="2_i3g6l"]
+[ext_resource type="PackedScene" uid="uid://nvw644t7nslr" path="res://scenes/levels/level_test_a.tscn" id="2_1nchj"]
+[ext_resource type="PackedScene" uid="uid://cb3hucdhaukar" path="res://scenes/levels/level_test_b.tscn" id="3_waslh"]
+[ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="3_yrxbm"]
+[ext_resource type="PackedScene" uid="uid://buxb2w2bi1x2s" path="res://scenes/levels/level_test_c.tscn" id="4_loamw"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource("1_yfvsu")
+Levels = Array[PackedScene]([ExtResource("2_1nchj"), ExtResource("3_waslh"), ExtResource("4_loamw")])
+PlayerScene = ExtResource("3_yrxbm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(360, 240)
+position = Vector2(514, 289)
 
 [node name="LevelHolder" type="Node2D" parent="."]
 
-[node name="Level" parent="LevelHolder" instance=ExtResource("2_i3g6l")]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Results" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 295.0
+offset_top = 222.0
+offset_right = 643.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Color: Blue, Kills 3, Deaths 0, Wins 3
+Color: Green, Kills 0, Deaths 3, Wins 0"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

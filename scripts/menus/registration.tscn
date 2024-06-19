@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bea4yftjrd14i"]
+
+[ext_resource type="Script" path="res://scripts/menus/Registration.cs" id="1_50a1c"]
+
+[node name="Registration" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -864.0
+offset_bottom = -536.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 2.08165e-12)
+script = ExtResource("1_50a1c")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 40.0
+text = "Press A to join..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 40.0
