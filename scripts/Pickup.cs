@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Pickup : RigidBody2D
+public partial class Pickup : Node2D
 {
 	public override void _Ready()
 	{

@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
 	}
 	[Export] public string InputDevice = "kb";
 	[Export] public Team PlayerTeam = Team.Blue;
+	[Export] public PackedScene CorpseScene;
 	[ExportGroup("Movement")]
 	[Export] public float Speed = 300.0f;
 	[Export] public float JumpVelocity = -200.0f;
@@ -249,6 +250,8 @@ public partial class Player : CharacterBody2D
 		// Returns false if the player cannot currently die i.e. dash immunity.
 		if(dashClock > 0.0f) return false;
 		game.AddMessage(this, "die");
+		var corpse = CorpseScene.Instantiate<Corpse>();
+		corpse.Init(this);
 		GetParent().RemoveChild(this);
 		QueueFree();
 		return true;

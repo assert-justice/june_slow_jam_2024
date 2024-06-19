@@ -1,8 +1,9 @@
-[gd_scene load_steps=324 format=3 uid="uid://f05efwoa1co4"]
+[gd_scene load_steps=325 format=3 uid="uid://f05efwoa1co4"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_7ptrc"]
 [ext_resource type="Texture2D" uid="uid://b4i604bicntky" path="res://sprites/Cyan Mothman Dash Sprite Sheet.png" id="2_6tjts"]
 [ext_resource type="Texture2D" uid="uid://ef4pm5mql20b" path="res://sprites/Cyan_Mothman_Design-Sheet.png" id="2_istm0"]
+[ext_resource type="PackedScene" uid="uid://d1lgdyahy4ymm" path="res://entities/corpse.tscn" id="2_kfpj5"]
 [ext_resource type="Texture2D" uid="uid://bnymcdeurs7k1" path="res://sprites/Cyan Mothman Victory Sprite Sheet.png" id="3_li5qx"]
 [ext_resource type="Texture2D" uid="uid://w1j44uo18nb0" path="res://sprites/Green_Mothman_Design-Sheet.png" id="3_p5rf5"]
 [ext_resource type="Texture2D" uid="uid://bv7iwmt3nca45" path="res://sprites/Cyan Mothman Jump Sprite Sheet.png" id="3_rwkko"]
@@ -1842,9 +1843,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4ujqu")
 }],
-"loop": true,
+"loop": false,
 "name": &"red_winged_default",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2354,6 +2355,7 @@ size = Vector2(22, 42)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7ptrc")
+CorpseScene = ExtResource("2_kfpj5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
