@@ -25,12 +25,15 @@ public partial class Game : Node2D
 	Node2D levelHolder;
 	Timer timer;
 	Label results;
+	AudioStreamPlayer music;
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("Camera2D");
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		timer = GetNode<Timer>("Timer");
 		results = GetNode<Label>("Results");
+		music = GetNode<AudioStreamPlayer>("Music");
+		music.Play();
 		PlayerSummary[] temp = {
 			new PlayerSummary("kb", Player.Team.Blue),
 			new PlayerSummary("0", Player.Team.Green),
@@ -64,6 +67,7 @@ public partial class Game : Node2D
 			var summary = summaries.Find(s => s.PlayerTeam == players[0].PlayerTeam);
 			summary.MatchWins++;
 			timer.Start();
+			music.Playing = false;
 		}
 	}
 
@@ -88,6 +92,7 @@ public partial class Game : Node2D
 	void AdvanceLevel(){
 		if(levelQueue.Count == 0) return;
 		SetLevel(levelQueue.Dequeue());
+		music.Playing = true;
 	}
 
 	void ClearLevel(){
@@ -148,4 +153,9 @@ public partial class Game : Node2D
 			ClearLevel();
 		}
 	}
+	private void _on_music_finished()
+	{
+		music.Play();
+	}
 }
+

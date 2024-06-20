@@ -44,6 +44,8 @@ public partial class Player : CharacterBody2D
 	CollisionShape2D dashCollider;
 	CollisionShape2D hitBox;
 	AnimatedSprite2D sprite;
+	AudioStreamPlayer2D jumpSound;
+	AudioStreamPlayer2D dashSound;
 	// Node references
 	Game game;
 	string animState = "default";
@@ -54,6 +56,8 @@ public partial class Player : CharacterBody2D
 		hitBox = GetNode<CollisionShape2D>("HitBox");
 		sprite = GetNode<AnimatedSprite2D>("Sprite");
 		sprite.Play();
+		jumpSound = GetNode<AudioStreamPlayer2D>("JumpSound");
+		dashSound = GetNode<AudioStreamPlayer2D>("DashSound");
 		// SetAnimation("default");
 		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
@@ -145,9 +149,9 @@ public partial class Player : CharacterBody2D
 		// Handle dash
 		if(dashJustPressed && Dashes > 0 && move.Length() > 0.0f){
 			velocity = move.Normalized() * DashSpeed;
-
 			dashClock = DashDuration;
 			Dashes--;
+			dashSound.Play();
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){
@@ -197,6 +201,7 @@ public partial class Player : CharacterBody2D
 			animState = "jumping";
 			if(justJumped){
 				sprite.Play();
+				jumpSound.Play();
 			}
 			// sprite.iso
 		}
@@ -258,7 +263,8 @@ public partial class Player : CharacterBody2D
 	}
 	public bool AddDash(){
 		// If already at max dashes, return false to indicate the powerup should not be consumed?
-		Dashes++;
+		// Dashes++;
+		Dashes = 1; // stored dashes cannot exceed 1
 		// SetAnimation("winged");
 		return true;
 	}
@@ -269,6 +275,7 @@ public partial class Player : CharacterBody2D
 		animState = "dancing";
 		sprite.Animation = GenAnimation("dancing");
 		sprite.Stop();
+		GetNode<AudioStreamPlayer2D>("WinSound").Play();
 	}
 	// Signal methods
 	private void _on_dash_box_body_entered(Node2D body)

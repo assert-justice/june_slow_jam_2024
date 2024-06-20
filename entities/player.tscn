@@ -1,4 +1,4 @@
-[gd_scene load_steps=325 format=3 uid="uid://f05efwoa1co4"]
+[gd_scene load_steps=328 format=3 uid="uid://f05efwoa1co4"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_7ptrc"]
 [ext_resource type="Texture2D" uid="uid://b4i604bicntky" path="res://sprites/Cyan Mothman Dash Sprite Sheet.png" id="2_6tjts"]
@@ -26,6 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://cau3b06dl62a8" path="res://sprites/Magenta Mothman Wall Slide Sprite Sheet.png" id="19_nou2l"]
 [ext_resource type="Texture2D" uid="uid://b3j0qi4gt0n5e" path="res://sprites/Yellow Mothman Victory Sprite Sheet.png" id="21_tpf4v"]
 [ext_resource type="Texture2D" uid="uid://pjayfxt0v2xv" path="res://sprites/Yellow Mothman Wall Slide Sprite Sheet.png" id="25_78ac1"]
+[ext_resource type="AudioStream" uid="uid://2gtn4w8dfgei" path="res://sfx/jump.mp3" id="27_kdetj"]
+[ext_resource type="AudioStream" uid="uid://ctan3gc7cmel5" path="res://sfx/dash.mp3" id="28_x3vwn"]
+[ext_resource type="AudioStream" uid="uid://cx3f7gr557ntn" path="res://sfx/win.mp3" id="29_rku11"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt55o"]
 atlas = ExtResource("2_6tjts")
@@ -2384,6 +2387,18 @@ shape = SubResource("RectangleShape2D_87mdj")
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_2a54f")
 disabled = true
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_kdetj")
+bus = &"Sfx"
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_x3vwn")
+bus = &"Sfx"
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("29_rku11")
+bus = &"Sfx"
 
 [connection signal="area_entered" from="Feet" to="." method="_on_feet_area_entered"]
 [connection signal="body_entered" from="DashBox" to="." method="_on_dash_box_body_entered"]

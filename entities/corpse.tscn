@@ -1,10 +1,11 @@
-[gd_scene load_steps=75 format=3 uid="uid://d1lgdyahy4ymm"]
+[gd_scene load_steps=76 format=3 uid="uid://d1lgdyahy4ymm"]
 
 [ext_resource type="Script" path="res://scripts/Corpse.cs" id="1_njewb"]
 [ext_resource type="Texture2D" uid="uid://r4wyxtmswq1s" path="res://sprites/Cyan Mothman Death Sprite Sheet.png" id="2_cn86i"]
 [ext_resource type="Texture2D" uid="uid://cdax4plcc63on" path="res://sprites/Green Mothman Death Sprite Sheet.png" id="3_k5ng3"]
 [ext_resource type="Texture2D" uid="uid://vuxnil20ophu" path="res://sprites/Magenta Mothman Death Sprite Sheet.png" id="4_m2pu5"]
 [ext_resource type="Texture2D" uid="uid://dtd1x8t6juh7n" path="res://sprites/Yellow Mothman Death Sprite Sheet.png" id="5_gtlb5"]
+[ext_resource type="AudioStream" uid="uid://ct6ycjngonal8" path="res://sfx/die.mp3" id="6_lq5oi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m726c"]
 atlas = ExtResource("2_cn86i")
@@ -531,5 +532,8 @@ script = ExtResource("1_njewb")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lq066")
 animation = &"blue_winged"
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lq5oi")
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

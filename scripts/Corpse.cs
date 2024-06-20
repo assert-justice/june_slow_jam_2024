@@ -13,6 +13,7 @@ public partial class Corpse : Node2D
 		Position = player.Position;
 		sprite.Animation = anim;
 		sprite.Play();
+		GetNode<AudioStreamPlayer2D>("Sound").Play();
 	}
 	private void _on_sprite_animation_finished()
 	{

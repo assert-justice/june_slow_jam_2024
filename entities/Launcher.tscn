@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://fwfochtrmm77"]
+[gd_scene load_steps=16 format=3 uid="uid://fwfochtrmm77"]
 
 [ext_resource type="Script" path="res://scripts/Launcher.cs" id="1_0f6jb"]
 [ext_resource type="Texture2D" uid="uid://c37fh70ar663y" path="res://sprites/Bouncy Mushroom Sprite Sheet.png" id="2_bg5pm"]
+[ext_resource type="AudioStream" uid="uid://cpelckfuwg1rf" path="res://sfx/boing.mp3" id="3_fkupo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4l242"]
 atlas = ExtResource("2_bg5pm")
@@ -95,5 +96,9 @@ sprite_frames = SubResource("SpriteFrames_fffw3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_d51cp")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fkupo")
+bus = &"Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
