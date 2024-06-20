@@ -36,6 +36,7 @@ text = "Color: Blue, Kills 3, Deaths 0, Wins 3
 Color: Green, Kills 0, Deaths 3, Wins 0"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("6_anf7q")
 bus = &"Music"
 
