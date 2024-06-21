@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
 [ext_resource type="Script" path="res://scripts/menus/Lobby.cs" id="3_rrxvl"]
 [ext_resource type="PackedScene" uid="uid://bea4yftjrd14i" path="res://scripts/menus/registration.tscn" id="4_mc7w6"]
-[ext_resource type="Texture2D" uid="uid://drcxwlihhc5mw" path="res://sprites/Cyan Mothman Portrait.png" id="5_mh16r"]
-[ext_resource type="Texture2D" uid="uid://biuqg52ufmv7o" path="res://sprites/Green Mothman Portrait.png" id="6_jp3g5"]
-[ext_resource type="Texture2D" uid="uid://cr20vq65p2lpq" path="res://sprites/Yellow Mothman Portrait.png" id="7_sumpe"]
-[ext_resource type="Texture2D" uid="uid://clctwedhvv00g" path="res://sprites/Magenta Mothman Portrait.png" id="8_jumub"]
+[ext_resource type="Texture2D" uid="uid://wa8m7vsotg5m" path="res://sprites/Cyan Mothman Portrait.png" id="5_mh16r"]
+[ext_resource type="Texture2D" uid="uid://34isegvj1rbc" path="res://sprites/Green Mothman Portrait.png" id="6_jp3g5"]
+[ext_resource type="Texture2D" uid="uid://dikcpm6fuqkof" path="res://sprites/Yellow Mothman Portrait.png" id="7_sumpe"]
+[ext_resource type="Texture2D" uid="uid://dcopk5c0fl164" path="res://sprites/Magenta Mothman Portrait.png" id="8_jumub"]
 
 [node name="Main" type="Control"]
 layout_mode = 3

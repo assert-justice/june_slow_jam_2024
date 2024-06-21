@@ -155,7 +155,8 @@ public partial class Player : CharacterBody2D
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){
-			velocity.Y = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
+			var dy = Dashes > 0 ? BonusJumpVelocity : JumpVelocity;
+			if(dy < velocity.Y) velocity.Y = dy;
 			jumpBufferClock = 0.0f;
 			// Can cancel out of a dash by jumping
 			dashClock = 0.0f;
