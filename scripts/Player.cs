@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D
 	// Children
 	CollisionShape2D dashCollider;
 	CollisionShape2D hitBox;
-	AnimatedSprite2D sprite;
+	public AnimatedSprite2D sprite;
 	AudioStreamPlayer2D jumpSound;
 	AudioStreamPlayer2D dashSound;
 	// Node references

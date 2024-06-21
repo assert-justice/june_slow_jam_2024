@@ -11,6 +11,7 @@ public partial class Corpse : Node2D
 		var wingStatus = isWinged ? "winged" : "wingless";
 		var anim = $"{color}_{wingStatus}";
 		Position = player.Position;
+		sprite.FlipH = player.sprite.FlipH;
 		sprite.Animation = anim;
 		sprite.Play();
 		GetNode<AudioStreamPlayer2D>("Sound").Play();
