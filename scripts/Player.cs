@@ -46,6 +46,7 @@ public partial class Player : CharacterBody2D
 	public AnimatedSprite2D sprite;
 	AudioStreamPlayer2D jumpSound;
 	AudioStreamPlayer2D dashSound;
+	AudioStreamPlayer2D pickupSound;
 	// Node references
 	Game game;
 	string animState = "default";
@@ -58,6 +59,7 @@ public partial class Player : CharacterBody2D
 		sprite.Play();
 		jumpSound = GetNode<AudioStreamPlayer2D>("JumpSound");
 		dashSound = GetNode<AudioStreamPlayer2D>("DashSound");
+		pickupSound = GetNode<AudioStreamPlayer2D>("PickupSound");
 		// SetAnimation("default");
 		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
@@ -266,6 +268,7 @@ public partial class Player : CharacterBody2D
 		// If already at max dashes, return false to indicate the powerup should not be consumed?
 		// Dashes++;
 		Dashes = 1; // stored dashes cannot exceed 1
+		pickupSound.Play();
 		// SetAnimation("winged");
 		return true;
 	}
