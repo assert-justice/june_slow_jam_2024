@@ -254,7 +254,7 @@ public partial class Player : CharacterBody2D
 	public bool Die(){
 		// Returns false if the player cannot currently die i.e. dash immunity.
 		if(dashClock > 0.0f) return false;
-		game.AddMessage(this, "die");
+		if(game != null)game.AddMessage(this, "die");
 		var corpse = CorpseScene.Instantiate<Corpse>();
 		corpse.Init(this);
 		GetParent().RemoveChild(this);
@@ -283,7 +283,7 @@ public partial class Player : CharacterBody2D
 		if(body is Player player){
 			if(player == this) return;
 			player.Die();
-			game.AddMessage(this, "kill", player);
+			if(game != null) game.AddMessage(this, "kill", player);
 			Bounce(player.Position);
 		}
 	}
@@ -292,7 +292,7 @@ public partial class Player : CharacterBody2D
 		if(area.IsInGroup("Head")){
 			if(area.GetParent() is Player player){
 				player.Die();
-				game.AddMessage(this, "kill", player);
+				if(game != null)game.AddMessage(this, "kill", player);
 				Bounce(player.Position);
 			}
 		}

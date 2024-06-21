@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3l5vtaawj38l"]
+
+[ext_resource type="Script" path="res://scripts/Hazard.cs" id="1_hroul"]
+[ext_resource type="Texture2D" uid="uid://khur0f0wpm8t" path="res://sprites/tiles.png" id="2_5td3a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7yr0"]
+atlas = ExtResource("2_5td3a")
+region = Rect2(64, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggyp1"]
+atlas = ExtResource("2_5td3a")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfxum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7yr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggyp1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4h6e"]
+size = Vector2(14, 13)
+
+[node name="Hazard" type="Area2D"]
+script = ExtResource("1_hroul")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pfxum")
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_h4h6e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

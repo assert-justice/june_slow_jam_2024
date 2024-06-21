@@ -24,9 +24,9 @@ public partial class Main : Control
 		
 		SetMenu("Main");
 	}
-    public override void _Input(InputEvent @event)
-    {
-        if(@event.IsActionPressed("pause") && !IsPaused()){
+	public override void _Input(InputEvent @event)
+	{
+		if(@event.IsActionPressed("pause") && !IsPaused()){
 			SetPaused(true);
 			GetViewport().SetInputAsHandled();
 		}
@@ -37,8 +37,8 @@ public partial class Main : Control
 			}
 			GetViewport().SetInputAsHandled();
 		}
-    }
-    bool IsPaused(){
+	}
+	bool IsPaused(){
 		return gameHolder.ProcessMode == ProcessModeEnum.Disabled;
 	}
 	void SetPaused(bool paused){
