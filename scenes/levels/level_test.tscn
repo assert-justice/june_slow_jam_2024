@@ -30,5 +30,9 @@ position = Vector2(144, 148)
 [node name="Launcher" parent="." instance=ExtResource("5_gd0j1")]
 position = Vector2(855, 551)
 
+[node name="Launcher2" parent="." instance=ExtResource("5_gd0j1")]
+position = Vector2(970, 475)
+rotation = -1.02863
+
 [node name="Hazard" parent="." instance=ExtResource("6_r8kei")]
 position = Vector2(541, 344)
