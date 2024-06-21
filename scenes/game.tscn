@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://coj4njl6yawks"]
+[gd_scene load_steps=6 format=3 uid="uid://coj4njl6yawks"]
 
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_yfvsu"]
 [ext_resource type="PackedScene" uid="uid://nvw644t7nslr" path="res://scenes/levels/level_test_a.tscn" id="2_1nchj"]
-[ext_resource type="PackedScene" uid="uid://cb3hucdhaukar" path="res://scenes/levels/level_test_b.tscn" id="3_waslh"]
 [ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="3_yrxbm"]
-[ext_resource type="PackedScene" uid="uid://buxb2w2bi1x2s" path="res://scenes/levels/level_test_c.tscn" id="4_loamw"]
+[ext_resource type="PackedScene" uid="uid://ba8mr6b64e07e" path="res://entities/pickup.tscn" id="4_cw8kl"]
 [ext_resource type="AudioStream" uid="uid://dgkbkhlbdkylw" path="res://music/chipper.mp3" id="6_anf7q"]
 
 [node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource("1_yfvsu")
-Levels = Array[PackedScene]([ExtResource("2_1nchj"), ExtResource("3_waslh"), ExtResource("4_loamw")])
+Levels = Array[PackedScene]([ExtResource("2_1nchj")])
 PlayerScene = ExtResource("3_yrxbm")
+PickupScene = ExtResource("4_cw8kl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(514, 289)
@@ -40,5 +40,10 @@ process_mode = 1
 stream = ExtResource("6_anf7q")
 bus = &"Music"
 
+[node name="PickupTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_pickup_timer_timeout"]

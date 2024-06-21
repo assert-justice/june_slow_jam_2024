@@ -9,6 +9,7 @@ public partial class Game : Node2D
 	[Export] public PackedScene[] Levels;
 	// int currentLevel = 0;
 	[Export] public PackedScene PlayerScene;
+	[Export] public PackedScene PickupScene;
 	public struct Message{
 		public Player.Team SenderTeam;
 		public Player.Team? ReceiverTeam;
@@ -42,6 +43,12 @@ public partial class Game : Node2D
 		players = new();
 		messages = new();
 		levelQueue = new();
+		// AdvanceLevel();
+		// Only runs if scene is run independently
+		// SetTournament()
+		if(GetParent() is Window){
+			SetTournament(temp, 1);
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -156,6 +163,16 @@ public partial class Game : Node2D
 	private void _on_music_finished()
 	{
 		music.Play();
+	}
+	private void _on_pickup_timer_timeout()
+	{
+		// Find an unoccupied spawner
+		var nodes = GetTree().GetNodesInGroup("Spawner").Where(n => n.GetChildCount() == 0).ToArray();
+		if(nodes.Count() == 0) return;
+		var idx = Mathf.FloorToInt(GD.Randf() * nodes.Count());
+		var pickup = PickupScene.Instantiate<Node2D>();
+		nodes[idx].AddChild(pickup);
+		pickup.Position = Vector2.Zero;
 	}
 }
 
