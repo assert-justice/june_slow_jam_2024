@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=9 format=3 uid="uid://dv38fbjr8wchp"]
 
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
 [ext_resource type="Script" path="res://scripts/menus/Lobby.cs" id="3_rrxvl"]
 [ext_resource type="PackedScene" uid="uid://bea4yftjrd14i" path="res://scripts/menus/registration.tscn" id="4_mc7w6"]
+[ext_resource type="Texture2D" uid="uid://drcxwlihhc5mw" path="res://sprites/Cyan Mothman Portrait.png" id="5_mh16r"]
+[ext_resource type="Texture2D" uid="uid://biuqg52ufmv7o" path="res://sprites/Green Mothman Portrait.png" id="6_jp3g5"]
+[ext_resource type="Texture2D" uid="uid://cr20vq65p2lpq" path="res://sprites/Yellow Mothman Portrait.png" id="7_sumpe"]
+[ext_resource type="Texture2D" uid="uid://clctwedhvv00g" path="res://sprites/Magenta Mothman Portrait.png" id="8_jumub"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -80,7 +84,7 @@ anchor_top = 0.931
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -80.0
-offset_top = -0.256031
+offset_top = -283.0
 offset_right = -80.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -89,15 +93,19 @@ alignment = 1
 
 [node name="Player 1 Registration" parent="MenuHolder/Lobby/HFlowContainer" instance=ExtResource("4_mc7w6")]
 layout_mode = 2
+Portrait = ExtResource("5_mh16r")
 
 [node name="Player 2 Registration" parent="MenuHolder/Lobby/HFlowContainer" instance=ExtResource("4_mc7w6")]
 layout_mode = 2
+Portrait = ExtResource("8_jumub")
 
 [node name="Player 3 Registration" parent="MenuHolder/Lobby/HFlowContainer" instance=ExtResource("4_mc7w6")]
 layout_mode = 2
+Portrait = ExtResource("7_sumpe")
 
 [node name="Player 4 Registration" parent="MenuHolder/Lobby/HFlowContainer" instance=ExtResource("4_mc7w6")]
 layout_mode = 2
+Portrait = ExtResource("6_jp3g5")
 
 [node name="Ready Moon" type="Control" parent="MenuHolder/Lobby"]
 layout_mode = 1
@@ -106,7 +114,7 @@ offset_right = 1025.0
 offset_bottom = 97.0
 
 [node name="Moon" type="Polygon2D" parent="MenuHolder/Lobby/Ready Moon"]
-position = Vector2(-463, -381)
+position = Vector2(-460, -512)
 scale = Vector2(3.23918, 3.23918)
 polygon = PackedVector2Array(200, 79, 214, 65, 228, 48, 244, 43, 258, 44, 305, 41, 360, 57, 388, 78, 398, 136, 380, 188, 347, 217, 300, 228, 249, 217, 211, 187, 187, 130)
 
