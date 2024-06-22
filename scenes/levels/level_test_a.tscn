@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://nvw644t7nslr"]
+[gd_scene load_steps=7 format=3 uid="uid://nvw644t7nslr"]
 
 [ext_resource type="PackedScene" uid="uid://d2p8pusadm75o" path="res://entities/background.tscn" id="1_llxii"]
 [ext_resource type="TileSet" uid="uid://brxxpe6u4vbo1" path="res://tilesets/general_tile_set.tres" id="2_46wlj"]
 [ext_resource type="PackedScene" uid="uid://ba8mr6b64e07e" path="res://entities/pickup.tscn" id="3_ucpy8"]
 [ext_resource type="PackedScene" uid="uid://fwfochtrmm77" path="res://entities/Launcher.tscn" id="4_x3h7t"]
 [ext_resource type="PackedScene" uid="uid://cjk2tgom2aw1a" path="res://entities/trap.tscn" id="5_esivh"]
+[ext_resource type="PackedScene" uid="uid://d3l5vtaawj38l" path="res://entities/hazard.tscn" id="6_62whs"]
 
 [node name="Level" type="Node2D"]
 
@@ -39,3 +40,6 @@ position = Vector2(845, 439)
 [node name="Trap" parent="." instance=ExtResource("5_esivh")]
 position = Vector2(919, 425)
 rotation = 3.81644
+
+[node name="Hazard" parent="." instance=ExtResource("6_62whs")]
+position = Vector2(933, 511)
