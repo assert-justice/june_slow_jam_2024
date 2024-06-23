@@ -35,10 +35,6 @@ public partial class Game : Node2D
 		results = GetNode<Label>("Results");
 		music = GetNode<AudioStreamPlayer>("Music");
 		music.Play();
-		PlayerSummary[] temp = {
-			new PlayerSummary("kb", Player.Team.Blue),
-			new PlayerSummary("0", Player.Team.Green),
-		};
 		summaries = new();
 		players = new();
 		messages = new();
@@ -47,6 +43,10 @@ public partial class Game : Node2D
 		// Only runs if scene is run independently
 		// SetTournament()
 		if(GetParent() is Window){
+			PlayerSummary[] temp = {
+				new PlayerSummary("kb", Player.Team.Blue),
+				new PlayerSummary("0", Player.Team.Green),
+			};
 			SetTournament(temp, 1);
 		}
 	}

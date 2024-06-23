@@ -4,9 +4,11 @@ using System;
 public partial class Trap : Node2D
 {
 	[Export] public PackedScene BulletScene;
-	[Export] public float BulletSpeed = 600.0f;
+	[Export] public float BulletSpeed = 200.0f;
+	[Export] public float Cooldown = 3;
 	RayCast2D ray;
-	bool canFire = true;
+	float clock = 0.0f;
+	// bool canFire = true;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,7 +18,11 @@ public partial class Trap : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if(!canFire) return;
+		// if(!canFire) return;
+		if(clock > 0) {
+			clock -= (float)delta;
+			return;
+		}
 		var collider = ray.GetCollider();
 		// GD.Print(collider);
 		if(collider is CharacterBody2D){
@@ -27,7 +33,8 @@ public partial class Trap : Node2D
 			bullet.Rotation = Rotation;
 			bullet.Velocity = Transform.BasisXform(Vector2.Up * BulletSpeed);
 			// bullet.Velocity = Vector2.Up * BulletSpeed;
-			canFire = false;
+			// canFire = false;
+			clock = Cooldown;
 			// GD.Print("fire!");
 		}
 	}
