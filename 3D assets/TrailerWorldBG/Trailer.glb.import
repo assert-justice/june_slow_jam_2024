@@ -1844,6 +1844,12 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_TrailerWheels.tres"
 }
+},
+"nodes": {
+"PATH:AnimationPlayer": {
+"compression/enabled": true,
+"optimizer/enabled": false
+}
 }
 }
 gltf/naming_version=1

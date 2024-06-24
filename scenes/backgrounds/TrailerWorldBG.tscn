@@ -179,7 +179,7 @@ buffer = PackedFloat32Array(2.50646, 0.239254, 0.795148, -2473.6, -0.173803, 2.6
 environment = SubResource("Environment_8xoc3")
 
 [node name="TrailerStars" parent="." instance=ExtResource("1_aauu2")]
-transform = Transform3D(-1.94636e-07, 0, 4.45276, 0, 4.45276, 0, -4.45276, 0, -1.94636e-07, 0, 707.151, 0)
+transform = Transform3D(-1.94636e-07, 0, 4.45276, 0, 4.45276, 0, -4.45276, 0, -1.94636e-07, 0, 0, 0)
 
 [node name="SkyBG" parent="." instance=ExtResource("1_p7umx")]
 
@@ -240,38 +240,41 @@ visible = false
 [node name="Trailer" parent="." instance=ExtResource("2_6v1g7")]
 
 [node name="CurveMoveEmpty" parent="Trailer" index="0"]
-transform = Transform3D(8.72277e-06, -0.859589, -0.510987, -0.999282, -0.0193719, 0.0325705, -0.037896, 0.51062, -0.85897, -212.232, 229.647, 128.562)
+transform = Transform3D(-5.24856e-05, -0.735548, -0.677473, -0.999286, -0.025565, 0.0278339, -0.0377928, 0.676991, -0.73502, -184.892, 227.969, 172.797)
 
 [node name="Camera3D" type="Camera3D" parent="Trailer/CurveMoveEmpty/CameraPos" index="0"]
-transform = Transform3D(1, 1.80677e-07, 1.49012e-08, 0, -0.0584352, 0.99829, -8.84756e-09, -0.998291, -0.0584353, 1.52588e-05, -1.71591, -0.122101)
+transform = Transform3D(1, 2.01166e-07, -8.9407e-08, 0, -0.0584352, 0.998291, 0, -0.998291, -0.0584352, 1.52588e-05, -1.96011, -0.290497)
 fov = 53.3
 
+[node name="Trailer" parent="Trailer/CurveMoveEmpty" index="1"]
+transform = Transform3D(0.999973, 5.65734e-06, -0.00735447, -5.05774e-06, 1, 8.15471e-05, 0.00735447, -8.15077e-05, 0.999973, 1.14959, 3.90613, -0.0143957)
+
 [node name="TrailerBedPlank_1" parent="Trailer/CurveMoveEmpty/Trailer" index="0"]
-transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11163e-05, 8.82605e-06, 0.189779, 0)
+transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11163e-05, -1.08033e-07, 0.189794, -6.85453e-07)
 
 [node name="TrailerBedPlank_1_001" parent="Trailer/CurveMoveEmpty/Trailer" index="1"]
-transform = Transform3D(3.35575e-05, 1, 2.27429e-05, 1.10567e-05, 2.27056e-05, -0.999995, -1.00001, 3.35871e-05, -1.11014e-05, 1.15315e-06, 0.867574, 4.32134e-06)
+transform = Transform3D(3.35575e-05, 1, 2.27429e-05, 1.10567e-05, 2.27056e-05, -0.999995, -1.00001, 3.35871e-05, -1.11014e-05, 7.72625e-06, 0.867584, 4.32134e-06)
 
 [node name="TrailerBedPlank_1_002" parent="Trailer/CurveMoveEmpty/Trailer" index="2"]
-transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11088e-05, -8.42795e-06, 1.55871, 8.04663e-06)
+transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11088e-05, -1.17347e-06, 1.55871, 7.89762e-06)
 
 [node name="TrailerBedPlank_1_003" parent="Trailer/CurveMoveEmpty/Trailer" index="3"]
-transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11088e-05, 4.22478e-05, -0.482204, -4.14252e-06)
+transform = Transform3D(3.35571e-05, 1, 2.27466e-05, 1.10567e-05, 2.27019e-05, -0.999995, -1.00001, 3.3587e-05, -1.11088e-05, 3.35611e-05, -0.482213, -3.30806e-06)
 
 [node name="TrailerEdge" parent="Trailer/CurveMoveEmpty/Trailer" index="4"]
-transform = Transform3D(3.35573e-05, 1, 2.27466e-05, 1.10567e-05, 2.27056e-05, -0.999995, -1.00001, 3.3587e-05, -1.11014e-05, -0.0241803, 2.03952, 9.0003e-06)
+transform = Transform3D(3.35573e-05, 1, 2.27466e-05, 1.10567e-05, 2.27056e-05, -0.999995, -1.00001, 3.3587e-05, -1.11014e-05, -0.0241755, 2.03955, 8.37445e-06)
 
 [node name="Wheel" parent="Trailer/CurveMoveEmpty/Trailer" index="5"]
-transform = Transform3D(1.61529e-05, -0.999281, -0.0379015, -0.0317212, -0.0378829, 0.998779, -0.999497, 0.00118619, -0.0316989, 0.517491, 2.69098, -0.0110607)
+transform = Transform3D(1.61529e-05, -0.999281, -0.0379015, -0.0317212, -0.0378829, 0.998779, -0.999497, 0.00118619, -0.0316989, 0.517584, 2.69098, -0.0110686)
 
 [node name="TrailerWheels_001" parent="Trailer/CurveMoveEmpty/Trailer/Wheel" index="0"]
-transform = Transform3D(0.994227, 5.49026e-06, -0.107292, -0.107292, 1.23212e-07, -0.994227, -5.44534e-06, 1, 7.11563e-07, -3.63216e-07, -3.60826e-05, -2.00872e-05)
+transform = Transform3D(-0.497658, -0.000132594, 0.867373, 0.867373, -8.06891e-05, 0.497658, 4.00121e-06, 1, 0.000155164, -1.52363e-05, -5.51209e-05, -1.89556e-05)
 
 [node name="Wheel_001" parent="Trailer/CurveMoveEmpty/Trailer" index="6"]
-transform = Transform3D(1.6153e-05, -0.999281, -0.0379015, -0.0317212, -0.0378829, 0.998779, -0.999497, 0.00118619, -0.0316989, 0.517277, 2.76099, 2.19499)
+transform = Transform3D(1.6153e-05, -0.999281, -0.0379015, -0.0317212, -0.0378829, 0.998779, -0.999497, 0.00118619, -0.0316989, 0.494392, 2.76011, 2.19501)
 
 [node name="TrailerWheels_002" parent="Trailer/CurveMoveEmpty/Trailer/Wheel_001" index="0"]
-transform = Transform3D(0.994227, 5.49026e-06, -0.107292, -0.107292, 1.23212e-07, -0.994227, -5.44534e-06, 1, 7.11563e-07, -4.08152e-07, -3.06688e-05, 2.9658e-06)
+transform = Transform3D(-0.497658, -0.000132594, 0.867373, 0.867373, -8.06891e-05, 0.497658, 4.00121e-06, 1, 0.000155164, 2.11952e-06, -3.65663e-05, 1.22372e-05)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Trailer/CurveMoveEmpty/Trailer" index="7"]
 transform = Transform3D(1, 5.21541e-08, 0, -4.84288e-08, 0.999999, -7.45058e-09, -2.32831e-10, 7.45058e-09, 1, -1.53802, 2.24414, 7.62471)
@@ -303,7 +306,7 @@ spot_angle_attenuation = 2.54912
 
 [node name="AnimationPlayer" parent="Trailer" index="1"]
 autoplay = "Animation"
-speed_scale = 1.5
+speed_scale = 1.4
 
 [node name="FarBG" parent="." instance=ExtResource("6_l3hqg")]
 
