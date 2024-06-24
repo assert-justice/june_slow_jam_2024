@@ -9,7 +9,6 @@
 [node name="Level" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_hf71y")]
-position = Vector2(-242, -82)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
