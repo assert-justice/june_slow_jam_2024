@@ -11,6 +11,7 @@ public partial class Main : Control
 	CanvasLayer gameHolder;
 	Control menuHolder;
 	Lobby lobby;
+	Scoreboard scoreboard;
 	Stack<string> menuStack;
 	public override void _Ready()
 	{
@@ -21,6 +22,8 @@ public partial class Main : Control
 		lobby = GetNode<Lobby>("MenuHolder/Lobby");
 		lobby.StartGame += _on_lobby_start_game;
 		lobby.ExitLobby += _on_lobby_exit_lobby;
+		scoreboard = GetNode<Scoreboard>("MenuHolder/Scoreboard");
+		scoreboard.ExitScoreboard += _on_scoreboard_exit;
 		
 		SetMenu("Main");
 	}
@@ -62,14 +65,14 @@ public partial class Main : Control
 		foreach(var child in menuHolder.GetChildren()){
 			if(child is CanvasItem node){
 				node.Visible = false;
-				if(child.Name == name){
+				if(node.Name == name){
 					SetFocus(node);
 					found = true;
 					node.Visible = true;
 				}
 			}
 		}
-		if(!found) GD.PrintErr("Invalid menu name");
+		if(!found) GD.PrintErr("Invalid menu name: " + name);
 	}
 	bool SetFocus(Node node){
 		if(node is Control ctrl && ctrl.FocusMode == FocusModeEnum.All){
@@ -106,6 +109,7 @@ public partial class Main : Control
 		var game = GameScene.Instantiate() as Game;
 		gameHolder.AddChild(game);
 		game.SetTournament(playerSummaries, 3);
+		game.GameOver += _on_game_game_over;
 		menuHolder.Visible = false;
 		menuStack.Clear();
 		// gameHolder.ProcessMode = ProcessModeEnum.Always;
@@ -167,11 +171,30 @@ public partial class Main : Control
 	}
 	private void _on_lobby_start_game(Registration[] registrations)
 	{
-		Launch(registrations.Select(r => r.GetPlayerSummary()).Where(s => s != null).ToArray());
+		var summaries = registrations.Select(r => r.GetPlayerSummary()).Where(s => s != null).ToArray();
+		// move match wins to cross tournament wins
+		summaries = summaries.Select(s => new PlayerSummary(s.InputDevice, s.PlayerTeam, s.MatchWins, s.CrossTournamentMatchWins)).ToArray();
+		Launch(summaries);
 	}
 	private void _on_lobby_exit_lobby()
 	{
 		lobby.SetActive(false);
 		PopMenu();
+	}
+
+	private void _on_scoreboard_exit() 
+	{
+		SetMenu("Main");
+		PushMenu("Lobby");
+
+		lobby.SetActive(true);
+		scoreboard.SetActive(false);
+	}
+
+	private void _on_game_game_over(PlayerSummary[] playerSummaries)
+	{
+		SetMenu("Scoreboard");
+		scoreboard.SetActive(true);
+		scoreboard.SetSummaries(playerSummaries);
 	}
 }

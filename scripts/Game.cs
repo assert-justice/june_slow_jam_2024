@@ -27,6 +27,8 @@ public partial class Game : Node2D
 	Timer timer;
 	Label results;
 	AudioStreamPlayer music;
+	[Signal]
+	public delegate void GameOverEventHandler(PlayerSummary[] summaries);
 	public override void _Ready()
 	{
 		camera = GetNode<Camera2D>("Camera2D");
@@ -150,14 +152,8 @@ public partial class Game : Node2D
 		if(levelQueue.Count > 0) AdvanceLevel();
 		else{
 			// Show Results Screen
-			var str = "";
-			foreach (var s in summaries)
-			{
-				str += s.ToString() + "\n";
-			}
-			results.Text = str;
-			results.Visible = true;
 			ClearLevel();
+			EmitSignal(SignalName.GameOver, summaries.ToArray());
 		}
 	}
 	private void _on_music_finished()
