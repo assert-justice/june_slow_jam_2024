@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://wku3jt4xttkr"]
+
+[ext_resource type="Shader" uid="uid://dlahcv1io3f2d" path="res://3D assets/TrailerWorldBG/Materials/BokehShader.tres" id="1_dam0h"]
+
+[resource]
+render_priority = -7
+shader = ExtResource("1_dam0h")
+shader_parameter/Color_1 = Color(1, 0.93, 0.7, 1)
+shader_parameter/Color_2 = Color(1, 0.291667, 0.15, 1)

@@ -1,7 +1,10 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpynygk3e80yd"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bpynygk3e80yd"]
+
+[ext_resource type="Texture2D" uid="uid://clxe4mru3fnss" path="res://3D assets/TrailerWorldBG/Materials/Textures/M_Moon_baseColor.png" id="1_caevt"]
 
 [resource]
 resource_name = "M_Moon"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0.968397, 0.831687, 1)
+albedo_texture = ExtResource("1_caevt")

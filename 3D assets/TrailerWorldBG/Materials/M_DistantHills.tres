@@ -4,4 +4,4 @@
 resource_name = "M_DistantHills"
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.0980571, 0.116884, 0.156384, 1)
+albedo_color = Color(0.0273229, 0.0458819, 0.141807, 1)

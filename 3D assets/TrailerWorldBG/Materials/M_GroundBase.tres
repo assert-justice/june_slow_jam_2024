@@ -1,6 +1,17 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtsy6p1g5d4ik"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dtsy6p1g5d4ik"]
+
+[ext_resource type="Texture2D" uid="uid://3ow4q4m72uxs" path="res://3D assets/TrailerWorldBG/Materials/Textures/M_GroundBase_baseColor.png" id="1_5itt0"]
 
 [resource]
 resource_name = "M_GroundBase"
 cull_mode = 2
-albedo_color = Color(0.0664, 0.08, 0.0754667, 1)
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.51233, 0.694172, 0.827152, 1)
+albedo_texture = ExtResource("1_5itt0")
+rim_enabled = true
+rim = 0.66
+rim_tint = 1.0
+backlight = Color(1, 1, 1, 1)
+distance_fade_min_distance = 462.42
+distance_fade_max_distance = 1279.7

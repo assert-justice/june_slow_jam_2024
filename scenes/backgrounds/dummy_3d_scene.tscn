@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://b4kydlv7m2vn8"]
 
-[ext_resource type="Material" uid="uid://d1ntg6p5g4ddd" path="res://3D assets/BGs/SimpleSkyMat1.tres" id="1_ccr43"]
-[ext_resource type="Material" uid="uid://ikfps5mvd7n0" path="res://3D assets/BGs/StarMat.tres" id="1_prkvi"]
-[ext_resource type="ArrayMesh" uid="uid://csdu3oftn7ykt" path="res://3D assets/BGs/Stars.obj" id="2_7428x"]
-[ext_resource type="ArrayMesh" uid="uid://mp2nuomjb4nx" path="res://3D assets/BGs/SkySphere.obj" id="2_dflc3"]
-[ext_resource type="Material" uid="uid://c3qmmdkgmvdpa" path="res://3D assets/BGs/SimpleSkyMat2.tres" id="3_sid1t"]
+[ext_resource type="Material" uid="uid://d1ntg6p5g4ddd" path="res://3D assets/SkyBG/SimpleSkyMat1.tres" id="1_ccr43"]
+[ext_resource type="Material" uid="uid://ikfps5mvd7n0" path="res://3D assets/SkyBG/StarMatv2.tres" id="1_prkvi"]
+[ext_resource type="ArrayMesh" uid="uid://csdu3oftn7ykt" path="res://3D assets/SkyBG/Stars.obj" id="2_7428x"]
+[ext_resource type="ArrayMesh" uid="uid://mp2nuomjb4nx" path="res://3D assets/SkyBG/SkySphere.obj" id="2_dflc3"]
+[ext_resource type="Material" uid="uid://c3qmmdkgmvdpa" path="res://3D assets/SkyBG/SimpleSkyMat2.tres" id="3_sid1t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l5oo5"]
 

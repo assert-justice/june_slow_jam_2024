@@ -31,6 +31,14 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
+"M_Bokeh": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/BokehMat.tres"
+},
+"M_Buildings": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_CityBuildings.tres"
+},
 "M_DistantHills": {
 "use_external/enabled": true,
 "use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_DistantHills.tres"
@@ -42,6 +50,10 @@ _subresources={
 "M_Moon": {
 "use_external/enabled": true,
 "use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_Moon.tres"
+},
+"M_Tree": {
+"use_external/enabled": true,
+"use_external/path": "res://3D assets/TrailerWorldBG/Materials/M_Tree.tres"
 }
 }
 }

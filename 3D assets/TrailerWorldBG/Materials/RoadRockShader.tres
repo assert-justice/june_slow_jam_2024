@@ -24,7 +24,7 @@ input_name = "screen_uv"
 [sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_fttb5"]
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_ogge0"]
-default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 1.0]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.0, 3, 0.0]
 op_type = 2
 
 [sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_3dfjw"]
@@ -47,7 +47,7 @@ void fragment() {
 // LinearSceneDepth:10
 	{
 		float __log_depth = textureLod(depth_tex_frg_10, SCREEN_UV, 0.0).x;
-	vec4 __depth_view = INV_PROJECTION_MATRIX * vec4(vec3(SCREEN_UV, __log_depth) * 2.0 - 1.0, 1.0);
+	vec4 __depth_view = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __log_depth, 1.0);
 		__depth_view.xyz /= __depth_view.w;
 		n_out10p0 = -__depth_view.z;
 	}
@@ -59,7 +59,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-310.924, 125.048)
 modes/depth_draw = 1
 modes/diffuse = 3
 modes/specular = 1

@@ -1,10 +1,18 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bjxam6drhlok2"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bjxam6drhlok2"]
 
 [ext_resource type="Shader" path="res://3D assets/TrailerWorldBG/Materials/grass.gdshader" id="1_vptiu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qd8py"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o1ry3"]
+invert = true
+normalize = false
+noise = SubResource("FastNoiseLite_qd8py")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_vptiu")
-shader_parameter/color = Color(0.2484, 0.36, 0.31908, 1)
-shader_parameter/color2 = Color(0.247059, 0.360784, 0.317647, 1)
-shader_parameter/noiseScale = 20.0
+shader_parameter/color = Color(0.1166, 0.22, 0.1166, 1)
+shader_parameter/color2 = Color(0.3034, 0.41, 0.3034, 1)
+shader_parameter/noiseScale = 500.0
+shader_parameter/noise = SubResource("NoiseTexture2D_o1ry3")

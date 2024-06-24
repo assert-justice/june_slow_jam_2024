@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://r7lhocdbxvp8"]
+
+[ext_resource type="Shader" uid="uid://b564rau2ek6o6" path="res://3D assets/TrailerWorldBG/Materials/CityShader.tres" id="1_17kfg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_17kfg")
+shader_parameter/BuildingBase = Color(0.0188788, 0.0195798, 0.0212152, 1)
+shader_parameter/BuildingWindows = Color(0.886584, 0.882132, 0.7381, 1)

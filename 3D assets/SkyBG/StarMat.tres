@@ -1,10 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ikfps5mvd7n0"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://w86fjxdcermy"]
 
-[ext_resource type="Shader" uid="uid://dxq6fqkaenrn7" path="res://3D assets/SkyBG/StarShader.tres" id="1_6r2hh"]
+[ext_resource type="Shader" uid="uid://dxq6fqkaenrn7" path="res://3D assets/SkyBG/StarShaderv2.tres" id="1_eqkro"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_6r2hh")
+shader = ExtResource("1_eqkro")
 shader_parameter/StarColor_3 = Color(0.963036, 0.914327, 0.630088, 1)
 shader_parameter/StarColor_4 = Color(0.886592, 0.623498, 0.640795, 1)
 shader_parameter/TwinkleSpeed1 = 0.5
