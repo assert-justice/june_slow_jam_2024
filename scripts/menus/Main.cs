@@ -29,6 +29,10 @@ public partial class Main : Control
 		
 		SetMenu("Main");
 	}
+	public override void _PhysicsProcess(double delta)
+	{
+		if(gameHolder.GetChildCount() == 0 && !musicPlayer.Playing) musicPlayer.Play();
+	}
 	public override void _Input(InputEvent @event)
 	{
 		if(@event.IsActionPressed("pause") && !IsPaused()){
@@ -62,10 +66,6 @@ public partial class Main : Control
 	void SelectMenu(){
 		bool found = false;
 		var name = menuStack.Peek();
-		GD.Print(name);
-		if(!musicPlayer.Playing && name == "Main"){
-			musicPlayer.Play();
-		}
 		menuHolder.Visible = true;
 		// gameHolder.ProcessMode = ProcessModeEnum.Disabled;
 		foreach(var child in menuHolder.GetChildren()){
