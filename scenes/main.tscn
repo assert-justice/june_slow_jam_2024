@@ -1,14 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=25 format=3 uid="uid://dv38fbjr8wchp"]
 
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
 [ext_resource type="Script" path="res://scripts/menus/Lobby.cs" id="3_rrxvl"]
+[ext_resource type="AudioStream" uid="uid://e7jf55cmv0cy" path="res://vo/rufus.mp3" id="4_kgeyw"]
 [ext_resource type="PackedScene" uid="uid://bea4yftjrd14i" path="res://scripts/menus/registration.tscn" id="4_mc7w6"]
-[ext_resource type="Texture2D" uid="uid://drcxwlihhc5mw" path="res://sprites/Cyan Mothman Portrait.png" id="5_mh16r"]
-[ext_resource type="Texture2D" uid="uid://biuqg52ufmv7o" path="res://sprites/Green Mothman Portrait.png" id="6_jp3g5"]
-[ext_resource type="Texture2D" uid="uid://cr20vq65p2lpq" path="res://sprites/Yellow Mothman Portrait.png" id="7_sumpe"]
-[ext_resource type="Texture2D" uid="uid://clctwedhvv00g" path="res://sprites/Magenta Mothman Portrait.png" id="8_jumub"]
+[ext_resource type="AudioStream" uid="uid://bjn1348ao0bol" path="res://vo/rufus-2.mp3" id="5_2iad3"]
+[ext_resource type="Texture2D" uid="uid://wa8m7vsotg5m" path="res://sprites/Cyan Mothman Portrait.png" id="5_mh16r"]
+[ext_resource type="Texture2D" uid="uid://34isegvj1rbc" path="res://sprites/Green Mothman Portrait.png" id="6_jp3g5"]
+[ext_resource type="AudioStream" uid="uid://b4tbk0wp5438r" path="res://vo/rufus-3.mp3" id="6_llh70"]
+[ext_resource type="Texture2D" uid="uid://dikcpm6fuqkof" path="res://sprites/Yellow Mothman Portrait.png" id="7_sumpe"]
+[ext_resource type="AudioStream" uid="uid://dy8ssccjmxrad" path="res://vo/clover.mp3" id="7_v5bas"]
+[ext_resource type="AudioStream" uid="uid://dx0ito8m6v7gc" path="res://vo/clover-2.mp3" id="8_b3ufg"]
+[ext_resource type="Texture2D" uid="uid://dcopk5c0fl164" path="res://sprites/Magenta Mothman Portrait.png" id="8_jumub"]
 [ext_resource type="Script" path="res://scripts/menus/Scoreboard.cs" id="9_0aye1"]
+[ext_resource type="AudioStream" uid="uid://dajpd32r642l2" path="res://vo/clover-3.mp3" id="9_3wt1y"]
+[ext_resource type="AudioStream" uid="uid://dojqnc40d7tav" path="res://vo/clover-4.mp3" id="10_spv84"]
+[ext_resource type="AudioStream" uid="uid://bggdupsy6q2sr" path="res://vo/azurine.mp3" id="11_js1ft"]
+[ext_resource type="AudioStream" uid="uid://d2pnmghrh20bs" path="res://vo/azurine-2.mp3" id="12_pmfi4"]
+[ext_resource type="AudioStream" uid="uid://d2bv06kce6w08" path="res://vo/azurine-3.mp3" id="13_ob1y8"]
+[ext_resource type="AudioStream" uid="uid://bqemi0hp4hi6q" path="res://vo/sunshine.mp3" id="14_n7svf"]
+[ext_resource type="AudioStream" uid="uid://vmldnnkwog5j" path="res://vo/sunshine-2.mp3" id="15_7y6in"]
+[ext_resource type="AudioStream" uid="uid://ct0ubldrnql34" path="res://vo/sunshine-3.mp3" id="16_rxjs3"]
+[ext_resource type="AudioStream" uid="uid://b3oegfmmeiwqq" path="res://vo/sunshine-4.mp3" id="17_v2k2i"]
+[ext_resource type="AudioStream" uid="uid://bqdl3xhgg5cai" path="res://vo/sunshine-5.mp3" id="18_m4emx"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -77,6 +92,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_rrxvl")
+RufusVo = Array[AudioStream]([ExtResource("4_kgeyw"), ExtResource("5_2iad3"), ExtResource("6_llh70")])
+CloverVo = Array[AudioStream]([ExtResource("7_v5bas"), ExtResource("8_b3ufg"), ExtResource("9_3wt1y"), ExtResource("10_spv84")])
+AzurineVo = Array[AudioStream]([ExtResource("11_js1ft"), ExtResource("12_pmfi4"), ExtResource("13_ob1y8")])
+SunshineVo = Array[AudioStream]([ExtResource("14_n7svf"), ExtResource("15_7y6in"), ExtResource("16_rxjs3"), ExtResource("17_v2k2i"), ExtResource("18_m4emx")])
 
 [node name="HFlowContainer" type="HFlowContainer" parent="MenuHolder/Lobby"]
 layout_direction = 2
@@ -131,6 +150,8 @@ text = "READY
 Press Start to begin!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VoPlayer" type="AudioStreamPlayer" parent="MenuHolder/Lobby"]
 
 [node name="Options" type="Control" parent="MenuHolder"]
 visible = false

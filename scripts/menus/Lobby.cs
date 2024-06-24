@@ -5,11 +5,16 @@ using System.Linq;
 
 public partial class Lobby : Control
 {
+    [Export] AudioStream[] RufusVo;
+    [Export] AudioStream[] CloverVo;
+    [Export] AudioStream[] AzurineVo;
+    [Export] AudioStream[] SunshineVo;
     Registration player1Registration;
     Registration player2Registration;
     Registration player3Registration;
     Registration player4Registration;
     Control readyMoon;
+    AudioStreamPlayer voPlayer;
     Dictionary<int, int> deviceToSlot;
 
     [Signal]
@@ -30,6 +35,7 @@ public partial class Lobby : Control
         player4Registration = container.GetNode<Registration>("Player 4 Registration");
 
         readyMoon = GetNode<Control>("Ready Moon");
+        voPlayer = GetNode<AudioStreamPlayer>("VoPlayer");
         readyMoon.Visible = false;
 
         deviceToSlot = new Dictionary<int, int>();
@@ -94,6 +100,28 @@ public partial class Lobby : Control
             if (slot == -1) {
                 return; // no slots available
             }
+
+            AudioStream[] streams = {};
+            switch (team)
+            {
+                case Player.Team.Red:
+                streams = RufusVo;
+                break;
+                case Player.Team.Green:
+                streams = CloverVo;
+                break;
+                case Player.Team.Blue:
+                streams = AzurineVo;
+                break;
+                case Player.Team.Yellow:
+                streams = SunshineVo;
+                break;
+                default:
+                break;
+            }
+            var idx = Mathf.FloorToInt(GD.Randf() * streams.Length);
+            voPlayer.Stream = streams[idx];
+            voPlayer.Play();
 
             string deviceName = @event.Device == 0 && @event is InputEventKey ? "kb" : @event.Device.ToString();
             GD.Print($"Player {slot + 1} joined! ({@event.Device}, {deviceName})");
