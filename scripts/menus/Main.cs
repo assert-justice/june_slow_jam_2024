@@ -12,6 +12,7 @@ public partial class Main : Control
 	Control menuHolder;
 	Lobby lobby;
 	Scoreboard scoreboard;
+	AudioStreamPlayer musicPlayer;
 	Stack<string> menuStack;
 	public override void _Ready()
 	{
@@ -24,6 +25,7 @@ public partial class Main : Control
 		lobby.ExitLobby += _on_lobby_exit_lobby;
 		scoreboard = GetNode<Scoreboard>("MenuHolder/Scoreboard");
 		scoreboard.ExitScoreboard += _on_scoreboard_exit;
+		musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
 		
 		SetMenu("Main");
 	}
@@ -60,6 +62,10 @@ public partial class Main : Control
 	void SelectMenu(){
 		bool found = false;
 		var name = menuStack.Peek();
+		GD.Print(name);
+		if(!musicPlayer.Playing && name == "Main"){
+			musicPlayer.Play();
+		}
 		menuHolder.Visible = true;
 		// gameHolder.ProcessMode = ProcessModeEnum.Disabled;
 		foreach(var child in menuHolder.GetChildren()){
@@ -113,6 +119,7 @@ public partial class Main : Control
 		menuHolder.Visible = false;
 		menuStack.Clear();
 		// gameHolder.ProcessMode = ProcessModeEnum.Always;
+		musicPlayer.Stop();
 		SetPaused(false);
 	}
 	void SetBusVolume(string busName, double value){

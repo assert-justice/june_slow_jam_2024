@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=26 format=3 uid="uid://dv38fbjr8wchp"]
 
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://ct0ubldrnql34" path="res://vo/sunshine-3.mp3" id="16_rxjs3"]
 [ext_resource type="AudioStream" uid="uid://b3oegfmmeiwqq" path="res://vo/sunshine-4.mp3" id="17_v2k2i"]
 [ext_resource type="AudioStream" uid="uid://bqdl3xhgg5cai" path="res://vo/sunshine-5.mp3" id="18_m4emx"]
+[ext_resource type="AudioStream" uid="uid://detao8u74aw64" path="res://music/menu.mp3" id="24_a4lw1"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -152,6 +153,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VoPlayer" type="AudioStreamPlayer" parent="MenuHolder/Lobby"]
+bus = &"Voice"
 
 [node name="Options" type="Control" parent="MenuHolder"]
 visible = false
@@ -372,6 +374,10 @@ text = "Exit"
 
 [node name="GameHolder" type="CanvasLayer" parent="."]
 process_mode = 4
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_a4lw1")
+bus = &"Music"
 
 [connection signal="button_down" from="MenuHolder/Main/VBoxContainer/Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="MenuHolder/Main/VBoxContainer/Options" to="." method="_on_options_button_down"]
