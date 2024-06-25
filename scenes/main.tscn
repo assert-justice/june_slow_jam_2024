@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=30 format=3 uid="uid://dv38fbjr8wchp"]
 
 [ext_resource type="Theme" uid="uid://cppsxoklikt3i" path="res://themes/format_1452.theme" id="1_4d24p"]
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://detao8u74aw64" path="res://music/menu.mp3" id="24_a4lw1"]
 [ext_resource type="Texture2D" uid="uid://dr1epfr4tnyju" path="res://sprites/Title Screen.png" id="26_6t5xu"]
 [ext_resource type="Texture2D" uid="uid://xcbyl8kchytl" path="res://sprites/Menu Backgrounds.png" id="26_7n03o"]
+[ext_resource type="Texture2D" uid="uid://b432vfyan70e4" path="res://sprites/Moon_Render.png" id="26_yfb2f"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -149,10 +150,10 @@ anchors_preset = 0
 offset_right = 1025.0
 offset_bottom = 97.0
 
-[node name="Moon" type="Polygon2D" parent="MenuHolder/Lobby/Ready Moon"]
-position = Vector2(-460, -512)
-scale = Vector2(3.23918, 3.23918)
-polygon = PackedVector2Array(200, 79, 214, 65, 228, 48, 244, 43, 258, 44, 305, 41, 360, 57, 388, 78, 398, 136, 380, 188, 347, 217, 300, 228, 249, 217, 211, 187, 187, 130)
+[node name="Moon" type="Sprite2D" parent="MenuHolder/Lobby/Ready Moon"]
+position = Vector2(512, -15)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("26_yfb2f")
 
 [node name="Label" type="Label" parent="MenuHolder/Lobby/Ready Moon"]
 layout_mode = 0
