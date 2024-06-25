@@ -212,5 +212,6 @@ public partial class Main : Control
 		SetMenu("Scoreboard");
 		scoreboard.SetActive(true);
 		scoreboard.SetSummaries(playerSummaries);
+		gameHolder.GetChild(0).QueueFree();
 	}
 }
