@@ -28,9 +28,7 @@ public partial class Scoreboard : Control
         for (int i = 0; i < summaries.Length; i++)
         {
             var scoreBar = scoreBarScene.Instantiate<ScoreBar>();
-            scoreBar.Team = summaries[i].PlayerTeam;
-            scoreBar.Victories = Mathf.RoundToInt(new RandomNumberGenerator().Randf() * 3);
-            scoreBar.VictoryCap = 3;
+            scoreBar.Initialize(summaries[i].PlayerTeam, summaries.Length - 1 - i, summaries.Length - 1, i);
             scoreBar.Name = $"ScoreBar {i}";
             scoreBarContainer.AddChild(scoreBar);
             scorebars[i] = scoreBar;
@@ -64,9 +62,12 @@ public partial class Scoreboard : Control
         {
             var scoreBar = scoreBarScene.Instantiate<ScoreBar>();
             // todo: make this a setup function or something
-            scoreBar.Team = this.summaries[i].PlayerTeam;
-            scoreBar.Victories = this.summaries[i].MatchWins;
-            scoreBar.VictoryCap = 3;
+            scoreBar.Initialize(
+                this.summaries[i].PlayerTeam,
+                this.summaries[i].MatchWins,
+                3,
+                i
+            );
             scoreBar.Name = $"ScoreBar {i}";
             scoreBarContainer.AddChild(scoreBar);
             scorebars[i] = scoreBar;
