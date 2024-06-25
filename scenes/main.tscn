@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=28 format=3 uid="uid://dv38fbjr8wchp"]
 
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
@@ -25,6 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://b3oegfmmeiwqq" path="res://vo/sunshine-4.mp3" id="17_v2k2i"]
 [ext_resource type="AudioStream" uid="uid://bqdl3xhgg5cai" path="res://vo/sunshine-5.mp3" id="18_m4emx"]
 [ext_resource type="AudioStream" uid="uid://detao8u74aw64" path="res://music/menu.mp3" id="24_a4lw1"]
+[ext_resource type="Texture2D" uid="uid://dr1epfr4tnyju" path="res://sprites/Title Screen.png" id="26_6t5xu"]
+[ext_resource type="Texture2D" uid="uid://xcbyl8kchytl" path="res://sprites/Menu Backgrounds.png" id="26_7n03o"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -35,6 +37,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k2sq3")
 GameScene = ExtResource("2_4xmn0")
+
+[node name="MenuBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_7n03o")
+expand_mode = 1
 
 [node name="MenuHolder" type="Control" parent="."]
 layout_mode = 1
@@ -371,6 +383,25 @@ text = "Main Menu"
 [node name="Exit" type="Button" parent="MenuHolder/Win/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="Title" type="Control" parent="MenuHolder"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuHolder/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_6t5xu")
+expand_mode = 1
 
 [node name="GameHolder" type="CanvasLayer" parent="."]
 process_mode = 4

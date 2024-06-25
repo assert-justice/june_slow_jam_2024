@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_yfvsu"]
 [ext_resource type="PackedScene" uid="uid://nvw644t7nslr" path="res://scenes/levels/level_test_a.tscn" id="2_1nchj"]
-[ext_resource type="PackedScene" uid="uid://4lyvtp52wnv6" path="res://scenes/levels/level0.tscn" id="2_8vesb"]
+[ext_resource type="PackedScene" uid="uid://c2u1vmuvamyky" path="res://scenes/levels/level3.tscn" id="2_fcna7"]
 [ext_resource type="PackedScene" uid="uid://s5tkkaiolqoj" path="res://scenes/levels/level1.tscn" id="2_hwd6u"]
 [ext_resource type="PackedScene" uid="uid://c04nucuko4f81" path="res://scenes/levels/level2.tscn" id="2_sahck"]
 [ext_resource type="PackedScene" uid="uid://f05efwoa1co4" path="res://entities/player.tscn" id="3_yrxbm"]
@@ -13,7 +13,7 @@
 
 [node name="Game" type="Node2D" groups=["Game"]]
 script = ExtResource("1_yfvsu")
-Levels = Array[PackedScene]([ExtResource("2_8vesb"), ExtResource("2_hwd6u"), ExtResource("2_sahck"), ExtResource("2_1nchj"), ExtResource("6_r5n52"), ExtResource("7_shmeo")])
+Levels = Array[PackedScene]([ExtResource("2_fcna7"), ExtResource("2_hwd6u"), ExtResource("2_sahck"), ExtResource("2_1nchj"), ExtResource("6_r5n52"), ExtResource("7_shmeo")])
 PlayerScene = ExtResource("3_yrxbm")
 PickupScene = ExtResource("4_cw8kl")
 

@@ -10,6 +10,7 @@ public partial class Main : Control
 	PackedScene GameScene;
 	CanvasLayer gameHolder;
 	Control menuHolder;
+	Control menuBackground;
 	Lobby lobby;
 	Scoreboard scoreboard;
 	AudioStreamPlayer musicPlayer;
@@ -19,6 +20,7 @@ public partial class Main : Control
 		gameHolder = GetNode<CanvasLayer>("GameHolder");
 		gameHolder.Layer = -1;
 		menuHolder = GetNode<Control>("MenuHolder");
+		menuBackground = GetNode<Control>("MenuBackground");
 		menuStack = new Stack<string>();
 		lobby = GetNode<Lobby>("MenuHolder/Lobby");
 		lobby.StartGame += _on_lobby_start_game;
@@ -27,11 +29,13 @@ public partial class Main : Control
 		scoreboard.ExitScoreboard += _on_scoreboard_exit;
 		musicPlayer = GetNode<AudioStreamPlayer>("MusicPlayer");
 		
-		SetMenu("Main");
+		SetMenu("Title");
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		if(gameHolder.GetChildCount() == 0 && !musicPlayer.Playing) musicPlayer.Play();
+		bool isInGame = gameHolder.GetChildCount() > 0;
+		if(!isInGame && !musicPlayer.Playing) musicPlayer.Play();
+		menuBackground.Visible = !isInGame;
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -44,6 +48,10 @@ public partial class Main : Control
 			else if(menuStack.Count > 1) {
 				PopMenu();
 			}
+			GetViewport().SetInputAsHandled();
+		}
+		else if(@event.IsActionPressed("ui_accept") && menuStack.Count() > 0 && menuStack.Peek() == "Title"){
+			PushMenu("Main");
 			GetViewport().SetInputAsHandled();
 		}
 	}
@@ -191,7 +199,8 @@ public partial class Main : Control
 
 	private void _on_scoreboard_exit() 
 	{
-		SetMenu("Main");
+		SetMenu("Title");
+		PushMenu("Main");
 		PushMenu("Lobby");
 
 		lobby.SetActive(true);
