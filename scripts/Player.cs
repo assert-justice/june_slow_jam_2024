@@ -47,6 +47,8 @@ public partial class Player : CharacterBody2D
 	AudioStreamPlayer2D jumpSound;
 	AudioStreamPlayer2D dashSound;
 	AudioStreamPlayer2D pickupSound;
+	GpuParticles2D landingParticles;
+	bool hasEmittedLandingDust = true;
 	// Node references
 	Game game;
 	string animState = "default";
@@ -60,6 +62,7 @@ public partial class Player : CharacterBody2D
 		jumpSound = GetNode<AudioStreamPlayer2D>("JumpSound");
 		dashSound = GetNode<AudioStreamPlayer2D>("DashSound");
 		pickupSound = GetNode<AudioStreamPlayer2D>("PickupSound");
+		landingParticles = GetNode<GpuParticles2D>("LandingParticles");
 		// SetAnimation("default");
 		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
@@ -98,6 +101,11 @@ public partial class Player : CharacterBody2D
 			// if(Dashes > 0) BonusJumps = 1;
 			BonusJumps = 1;
 			// Dashes = 1;
+
+			if(!hasEmittedLandingDust){
+				EmitDust(landingParticles);
+				hasEmittedLandingDust = true;
+			}
 		}
 		else{
 			onLeftWall = TestMove(Transform, Vector2.Left * 4);
@@ -109,6 +117,8 @@ public partial class Player : CharacterBody2D
 				// if(BonusJumps < 1) BonusJumps = 1;
 				BonusJumps = 1;
 			}
+
+			hasEmittedLandingDust = false;
 		}
 
 		// Setup movement vars
@@ -301,6 +311,11 @@ public partial class Player : CharacterBody2D
 				Bounce(player.Position);
 			}
 		}
+	}
+
+	private void EmitDust(GpuParticles2D particleEmitter)
+	{
+		particleEmitter.Restart();
 	}
 }
 
