@@ -48,6 +48,7 @@ public partial class Player : CharacterBody2D
 	AudioStreamPlayer2D dashSound;
 	AudioStreamPlayer2D pickupSound;
 	GpuParticles2D landingParticles;
+	GpuParticles2D dashingParticles;
 	bool hasEmittedLandingDust = true;
 	// Node references
 	Game game;
@@ -63,6 +64,7 @@ public partial class Player : CharacterBody2D
 		dashSound = GetNode<AudioStreamPlayer2D>("DashSound");
 		pickupSound = GetNode<AudioStreamPlayer2D>("PickupSound");
 		landingParticles = GetNode<GpuParticles2D>("LandingParticles");
+		dashingParticles = GetNode<GpuParticles2D>("DashingParticles");
 		// SetAnimation("default");
 		game = GetTree().GetNodesInGroup("Game")[0] as Game;
 	}
@@ -164,6 +166,7 @@ public partial class Player : CharacterBody2D
 			dashClock = DashDuration;
 			Dashes--;
 			dashSound.Play();
+			//dashingParticles.Restart();
 		}
 		// Handle regular jump.
 		else if(isGrounded && shouldJump){

@@ -1,4 +1,4 @@
-[gd_scene load_steps=337 format=3 uid="uid://f05efwoa1co4"]
+[gd_scene load_steps=333 format=3 uid="uid://f05efwoa1co4"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_7ptrc"]
 [ext_resource type="Texture2D" uid="uid://b4i604bicntky" path="res://sprites/Cyan Mothman Dash Sprite Sheet.png" id="2_6tjts"]
@@ -31,6 +31,9 @@
 [ext_resource type="AudioStream" uid="uid://cx3f7gr557ntn" path="res://sfx/win.mp3" id="29_rku11"]
 [ext_resource type="AudioStream" uid="uid://cbpi02dnahwjx" path="res://sfx/pickup.mp3" id="30_u4j2f"]
 [ext_resource type="Texture2D" uid="uid://c1xlvn7o48g7v" path="res://particles/DustParticle.png" id="31_taxh7"]
+[ext_resource type="Material" uid="uid://dv5lvv6yr7l4f" path="res://particles/DustParticleMat.tres" id="31_wuls1"]
+[ext_resource type="Texture2D" uid="uid://ueq4sh24gdb" path="res://particles/sparkle.png" id="32_8du1g"]
+[ext_resource type="Material" uid="uid://p8xo7tpg76xo" path="res://particles/DashParticleMat.tres" id="33_s1nwy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt55o"]
 atlas = ExtResource("2_6tjts")
@@ -2358,48 +2361,6 @@ size = Vector2(10, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a54f"]
 size = Vector2(22, 42)
 
-[sub_resource type="Curve" id="Curve_r07gc"]
-max_value = 100.0
-_data = [Vector2(0.0707269, 0), 0.0, 9.32371, 0, 0, Vector2(1, 14.7293), 2.49727, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_lik6i"]
-curve = SubResource("Curve_r07gc")
-
-[sub_resource type="Curve" id="Curve_v0mbt"]
-_data = [Vector2(0, 1), 0.0, -0.155266, 0, 0, Vector2(1, 0.248755), -1.26973, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_llrgf"]
-curve = SubResource("Curve_v0mbt")
-
-[sub_resource type="Curve" id="Curve_xxgae"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0903733, 0.443042), 1.90063, 1.90063, 0, 0, Vector2(1, 1), 0.0390106, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_1aeue"]
-curve = SubResource("Curve_xxgae")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wynh8"]
-lifetime_randomness = 0.32
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 3.0
-inherit_velocity_ratio = 0.05
-direction = Vector3(0, -100, 0)
-spread = 74.466
-initial_velocity_min = 17.97
-initial_velocity_max = 25.0
-damping_min = 22.13
-damping_max = 44.485
-damping_curve = SubResource("CurveTexture_lik6i")
-scale_min = 0.6
-scale_curve = SubResource("CurveTexture_llrgf")
-scale_over_velocity_max = 49.82
-scale_over_velocity_curve = SubResource("CurveTexture_1aeue")
-color = Color(1, 0.974, 0.87, 1)
-hue_variation_max = 0.06
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7ptrc")
 CorpseScene = ExtResource("2_kfpj5")
@@ -2452,12 +2413,25 @@ bus = &"Sfx"
 position = Vector2(0, 31)
 emitting = false
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_wynh8")
+process_material = ExtResource("31_wuls1")
 texture = ExtResource("31_taxh7")
 lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.65
+visibility_rect = Rect2(-16, -16, 32, 32)
+
+[node name="DashingParticles" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+emitting = false
+amount = 4
+process_material = ExtResource("33_s1nwy")
+texture = ExtResource("32_8du1g")
+lifetime = 12.0
+one_shot = true
+explosiveness = 0.92
+randomness = 0.2
 visibility_rect = Rect2(-16, -16, 32, 32)
 
 [connection signal="area_entered" from="Feet" to="." method="_on_feet_area_entered"]
