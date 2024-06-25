@@ -1,5 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://dv38fbjr8wchp"]
+[gd_scene load_steps=29 format=3 uid="uid://dv38fbjr8wchp"]
 
+[ext_resource type="Theme" uid="uid://cppsxoklikt3i" path="res://themes/format_1452.theme" id="1_4d24p"]
 [ext_resource type="Script" path="res://scripts/menus/Main.cs" id="1_k2sq3"]
 [ext_resource type="PackedScene" uid="uid://coj4njl6yawks" path="res://scenes/game.tscn" id="2_4xmn0"]
 [ext_resource type="Script" path="res://scripts/menus/Lobby.cs" id="3_rrxvl"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4d24p")
 script = ExtResource("1_k2sq3")
 GameScene = ExtResource("2_4xmn0")
 

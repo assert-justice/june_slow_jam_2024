@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bea4yftjrd14i"]
+[gd_scene load_steps=5 format=3 uid="uid://bea4yftjrd14i"]
 
 [ext_resource type="Script" path="res://scripts/menus/Registration.cs" id="1_50a1c"]
 [ext_resource type="Texture2D" uid="uid://drcxwlihhc5mw" path="res://sprites/Cyan Mothman Portrait.png" id="2_hncx2"]
+[ext_resource type="Theme" uid="uid://cppsxoklikt3i" path="res://themes/format_1452.theme" id="3_1cl1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urjtd"]
 bg_color = Color(0.156863, 0.156863, 0.156863, 1)
@@ -45,6 +46,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_urjtd")
 [node name="Label" type="Label" parent="Label Container"]
 z_index = 1
 layout_mode = 2
+theme = ExtResource("3_1cl1n")
 text = "Press A to join..."
 horizontal_alignment = 1
 vertical_alignment = 1
